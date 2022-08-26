@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 96px;
+  width: calc(100vw - 588px);
+}
+
+.header__logo {
+  margin-left: 40px;
+  width: 142px;
+  height: 32px;
+}
+
+.header__container {
+  margin-right: 40px;
+  width: 294px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.header__question {
+  font-weight: 400;
+  text-align: right;
+  color: #7D8081;
+}
+
+.header__button {
+  border-radius: 6px;
+  min-height: 36px;
+  padding: 9px 12px;
+  background-color: #fff;
+  border: 1px solid #D0D2D2;
+  font-weight: 500;
+  color: #161C1E;
+}
