@@ -9,6 +9,6 @@ const SubmitButton = (props:{children: string, className: string}) => {
   return (
       <Button type="submit" variant="contained" className={className}>{children}</Button>
   )
-}
+};
 
 export default SubmitButton;

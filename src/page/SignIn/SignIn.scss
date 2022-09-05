@@ -8,9 +8,6 @@
 
   .container {
     margin-bottom: 130px;
-  }
-
-  .sign-in-container {
     display: flex;
     flex-direction: column;
   }
@@ -26,18 +23,22 @@
   }
 
   .form {
+    width: 432px;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
 
   .custom-field {
-      font-family: 'Roboto', sans-serif;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 20px;
-      position: relative;
-      padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    position: relative;
+    padding-top: 20px;
 
     .form__input {
       padding: 16px 14px;
@@ -52,7 +53,6 @@
         &:hover, &:focus-within {
           border-color: #161C1E;
         }
-
     }
 
     .placeholder {
@@ -79,16 +79,6 @@
       line-height: 16px;
       background-color: #fff;
     }
-
-    //.filled + .placeholder {
-    //  padding: 0 5px;
-    //  left: 8px;
-    //  top: 8px;
-    //  color: #161C1E;
-    //  font-size: 13px;
-    //  line-height: 16px;
-    //  background-color: #fff;
-    //}
   }
 
 
@@ -113,7 +103,8 @@
   }
 
   .form__submit-button {
-    padding: 14px 191px;
+    width: 432px;
+    padding: 14px 180px;
     font-family: 'Roboto', sans-serif;
     color: #fff;
     font-style: normal;
@@ -123,7 +114,7 @@
     height: 48px;
     border-radius: 6px;
     text-transform: none;
-
+    cursor: pointer;
     background-color: #458FAC;
     &:hover {
       background-color: #246a85;
@@ -155,18 +146,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: -10px auto 28px;
+    margin: 10px auto 28px;
   }
 
   .input__button {
-      position: relative;
-      width: 30px;
-      height: 30px;
-      border: none;
-      background-color: inherit;
-      left: 380px;
-      bottom: 38px;
-      cursor: pointer;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    right: 13px;
+    top: 98px;
   }
 
   .input__label {
@@ -185,3 +176,12 @@
   }
 }
 
+.error-message {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 5px;
+  color: red;
+}

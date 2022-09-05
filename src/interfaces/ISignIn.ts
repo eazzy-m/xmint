@@ -1,5 +1,5 @@
 
 export interface ISignIn {
-    login: string;
+    email: string;
     password: string;
 }

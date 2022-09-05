@@ -4,7 +4,7 @@
   height: 100vh;
   top: 0;
   right: 0;
- // border: 1px solid red;
+  background-color: #458FAC;
 }
 
 .slide {
@@ -86,4 +86,27 @@
 .logo__img {
   width: 100%;
   height: 100%;
+}
+
+
+.fade-enter .slide {
+  opacity: 0;
+
+}
+.fade-enter-active .slide {
+  opacity: 1;
+
+}
+.fade-exit .slide {
+  opacity: 0;
+
+}
+.fade-exit-active .slide {
+  opacity: 1;
+
+}
+
+.fade-enter-active .slide,
+.fade-exit-active .slide {
+  transition: opacity 600ms ease-in;
 }
