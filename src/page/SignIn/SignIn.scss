@@ -1,12 +1,13 @@
 .page {
   height: calc(100vh - 96px);
   width: calc(100vw - 588px);
-  border: 1px solid red;
+  //border: 1px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .sign-in-container {
+  .container {
+    margin-bottom: 130px;
     display: flex;
     flex-direction: column;
   }
@@ -19,60 +20,168 @@
     font-size: 34px;
     line-height: 40px;
     padding: 0;
-    margin-bottom: 17px;
   }
 
   .form {
+    width: 432px;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
 
-  .form__input{
-    width: 432px;
-    height: 48px;
-    border-radius: 6px;
-    margin-bottom: 24px;
+  .custom-field {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    position: relative;
+    padding-top: 20px;
+
+    .form__input {
+      padding: 16px 14px;
+      width: 432px;
+      height: 48px;
+      border-radius: 6px;
+      border: 1px solid #D0D2D2;
+      color: black;
+      outline: none;
+      appearance: none;
+
+        &:hover, &:focus-within {
+          border-color: #161C1E;
+        }
+    }
+
+    .placeholder {
+      position: absolute;
+      left: 15px;
+      top: calc(50% - 1px);
+      transform: translateY(10%);
+      font-family: 'Roboto', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+      color: #D0D2D2;
+      transition: all .2s ease;
+    }
+
+    .form__input:valid + .placeholder,
+    .form__input:focus-within + .placeholder {
+      padding: 0 5px;
+      left: 8px;
+      top: 6px;
+      color: #161C1E;
+      font-size: 13px;
+      line-height: 16px;
+      background-color: #fff;
+    }
   }
 
-  .form__input_type_checkbox {
-    width: 22px;
-    height: 22px;
-    margin: 0 auto;
+
+
+  .form__input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1px solid #D0D2D2;
+
+    &[type="checkbox"]:checked:before {
+      content: ' \2714';
+      text-align: center;
+      color: white;
+      display: block;
+      width: 18px;
+      height: 18px;
+      background-color: #161C1E;
+      position: relative;
+      border-radius: 4px;
+    }
   }
 
   .form__submit-button {
     width: 432px;
+    padding: 14px 180px;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
     height: 48px;
+    border-radius: 6px;
+    text-transform: none;
+    cursor: pointer;
+    background-color: #458FAC;
+    &:hover {
+      background-color: #246a85;
+    }
   }
 
   .form__link {
-
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #161C1E;
+    text-decoration-color: #D0D2D2;
   }
 
   .form__paragraph {
-
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #7D8081;
   }
 
   .form__wrapper {
+    width: 100%;
     display: flex;
-    justify-content: center;
-    margin-top: -30px;
-    margin-bottom: 5px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px auto 28px;
   }
 
   .input__button {
-      position: relative;
-      width: 30px;
-      height: 30px;
-      border: none;
-      background-color: inherit;
-      left: 380px;
-      bottom: 62px;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    right: 13px;
+    top: 98px;
   }
 
   .input__label {
+    display: flex;
+    align-items: center;
+  }
+
+  .checkbox-label {
     text-align: center;
-    margin-bottom: 3px;
+    margin-left: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
   }
 }
 
+.error-message {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 5px;
+  color: red;
+}
