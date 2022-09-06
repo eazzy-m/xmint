@@ -1,0 +1,37 @@
+.header_main-page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 65px;
+  width: calc(100vw - 20px);
+  border-bottom: 1px solid #E8E8E9;
+  overflow: hidden;
+}
+
+.header-main__container {
+ margin-right: 40px;
+  width: 320px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__input {
+  position: relative;
+  right: 160px;
+  width: 598px;
+  height: 36px;
+}
+
+.header__image {
+  width: 20px;
+  height: 20px;
+}
+.user__image {
+  width: 36px;
+  height: 36px;
+}
+
+.header__span {
+
+}

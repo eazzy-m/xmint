@@ -1,6 +1,6 @@
 import React from "react";
 import SignIn from "../page/SignIn/SignIn";
-import About from "../page/About/About";
+import Main from "../page/MainPage/Main";
 import NotFound from "../page/NotFound/NotFound";
 
 export interface IRoute {
@@ -22,6 +22,6 @@ export const publicRoutes: IRoute[] = [
 ];
 
 export const privateRoutes: IRoute[] = [
-    {path: RouteNames.ABOUT, component: About, index: true},
+    {path: RouteNames.ABOUT, component: Main, index: true},
     {path: RouteNames.NOTFOUND, component: NotFound},
 ];

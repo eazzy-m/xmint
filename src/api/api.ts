@@ -4,6 +4,7 @@ import { toCapitalizeChart1 } from '../external/method';
 import {ISignIn} from "../interfaces/ISignIn";
 
 
+
 interface IConfig {
     baseURL?: string;
     timeout?: number;
@@ -131,4 +132,41 @@ export const signIn = (data: ISignIn) => {
     )
 };
 
-const fetcher = new Fetcher({})
+const fetcher = new Fetcher({});
+
+//https://dev.xmint.co/api/v1/drops/?limit=4&offset=5
+
+const token = localStorage.getItem('accessToken');
+
+export const getBanner = () => {
+   return fetcher.request<any, any>({
+       url: "/drops/nearest_drop_banner/",
+       method: "GET",
+       headers: {
+           Authorization: `Bearer ${token}`,
+       }
+
+   })
+}
+
+export const getCards = () => {
+    return fetcher.request<any, any>({
+        url: "/drops/?limit=4&offset=5",
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    })
+}
+export const getFirst = () => {
+    return fetcher.request<any, any>({
+        url: "/drops/?limit=1&offset=1",
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    })
+}
+
+
+

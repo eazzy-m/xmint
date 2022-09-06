@@ -4,37 +4,59 @@ import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import FormInput from "../../components/FormInput/FormInput";
 import { signIn } from "../../api/api";
 import { ISignIn } from "../../interfaces/ISignIn";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "./SignIn.scss";
 import {useDispatch} from "react-redux";
-import {signInReducer} from "../../redux/slice/auth";
+import {saveUser, signInReducer} from "../../redux/slice/auth";
+import Slider from "../Slider/Slider";
+import {IImg} from "../../interfaces/IImg";
+import slideOne from "../../assets/slider/up-top-overcoming-challenges.jpg";
+import quiksilver from "../../assets/partnership/quiksilver-12-logo-svg-vector 1.svg";
+import dg from "../../assets/partnership/Asset 1 3.svg";
+import billabong from "../../assets/partnership/Billabong_Logo_neu 1.svg";
+import slideTwo from "../../assets/slider/portrait-young-sportive-girl-training-with-dumbbells-isolated-blue-background-neon.jpg";
+import ride from "../../assets/partnership/Asset 1 5.svg";
+import burton from "../../assets/partnership/burton-2-logo-svg-vector 1.svg";
+import roxy from "../../assets/partnership/Frame 8.svg";
+import slideThree from "../../assets/slider/pensive-man-riding-down-hill.jpg";
+import element from "../../assets/partnership/element-logo 1.svg";
+import bones from "../../assets/partnership/Asset 1 6.svg";
+import powelPeralta from "../../assets/partnership/Layer 2.svg";
 
 const SignIn:FC = () => {
+
+    const imageArray: IImg[] = [
+        {image: slideOne, ind: 0, alt: "up top overcoming challenges", logos: [quiksilver, dg, billabong]},
+        {image: slideTwo, ind: 1, alt: "portrait young sportive girl training with dumbbells", logos: [ride, burton, roxy]},
+        {image: slideThree, ind: 2, alt: "pensive man riding down hill", logos: [element, bones, powelPeralta]},
+    ];
 
     const initialData: ISignIn = {
         email: '',
         password: ''
     };
 
-    const [error, setError] = useState<AxiosError>()
+    const [error, setError] = useState<AxiosError>();
     const [data, setData] = useState<ISignIn>(initialData);
     const [type, setType] = useState<boolean>(true);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         setData(initialData);
+        // {email: "mikalai.kozich@leverx.com", password: "@left4teamportal3A!"}
         signIn(data)
             .then(res => {
-                localStorage.setItem('accessToken', res.data.access)
+                localStorage.setItem('accessToken', res.data.access);
+                dispatch(saveUser(res.data.email));
                 const token = localStorage.getItem('accessToken');
                 if (token) {
-                    dispatch(signInReducer())
+                    dispatch(signInReducer());
                 }
-                navigate("/")
+                navigate("/");
             })
-            .catch((err) => setError(err))
+            .catch((err) => setError(err));
     };
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -47,6 +69,7 @@ const SignIn:FC = () => {
     };
 
     return (
+        <>
         <div className="page">
             <div className="container">
                 <h2 className="container__title">Please sign in.</h2>
@@ -74,20 +97,22 @@ const SignIn:FC = () => {
                                 <input className="form__input form__input_type_checkbox" type={"checkbox"}/>
                                 <span className="checkbox-label"> Remember me </span>
                             </label>
-                            <a href={"#"} className="form__link"> Forgot your password? </a>
+                            <Link to="#" className="form__link"> Forgot your password? </Link>
                         </div>
 
-                        <SubmitButton className="form__submit-button"> Sign In </SubmitButton>
+                        <SubmitButton className="button button_submit"> Sign In </SubmitButton>
                     </form>
 
                 <p className="form__paragraph">
                     By signing in you agree to our
-                    <a className="form__link" href={"#"}> Privacy Police </a>
+                    <Link className="form__link" to="#"> Privacy Police </Link>
                      and
-                    <a className="form__link" href={"#"}> Terms of Service. </a>
+                    <Link className="form__link" to="#"> Terms of Service. </Link>
                 </p>
             </div>
         </div>
+            <Slider slides={imageArray}/>
+        </>
     );
 };
 

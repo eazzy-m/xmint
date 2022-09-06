@@ -1,0 +1,9 @@
+.cards-array {
+  width: 100%;
+  padding: 20px 0;
+  display: grid;
+  grid-template-columns: 620px 620px;
+  grid-template-rows: 670px 670px;
+  gap: 20px;
+  justify-content: center;
+}

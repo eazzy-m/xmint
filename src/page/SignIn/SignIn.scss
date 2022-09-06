@@ -102,9 +102,7 @@
     }
   }
 
-  .form__submit-button {
-    width: 432px;
-    padding: 14px 180px;
+  .button {
     font-family: 'Roboto', sans-serif;
     color: #fff;
     font-style: normal;
@@ -119,6 +117,17 @@
     &:hover {
       background-color: #246a85;
     }
+  }
+
+  .button_small {
+    width: 125px;
+    height: 40px;
+    padding: 11px 16px;
+  }
+
+  .button_submit {
+    width: 432px;
+    padding: 14px 180px;
   }
 
   .form__link {

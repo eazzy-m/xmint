@@ -3,6 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     isAuth: false,
+    username: ''
 };
 
 export const auth = createSlice({
@@ -14,8 +15,11 @@ export const auth = createSlice({
         },
         signOutReducer: (state) => {
             state.isAuth = false;
+        },
+        saveUser: (state, {payload}) => {
+            state.username = payload
         }
     }
 });
 
-export const {signInReducer, signOutReducer} = auth.actions;
+export const {signInReducer, signOutReducer, saveUser} = auth.actions;
