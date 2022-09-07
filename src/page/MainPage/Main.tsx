@@ -11,7 +11,6 @@ import Footer from "../Footer/Footer";
 
 
 const Main = () => {
-    const token = localStorage.getItem('accessToken');
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -22,18 +21,15 @@ const Main = () => {
     };
 
     return (
+        <>
             <div className="main-page">
-                {token ?
-                    <>
-                        <Banner/>
-                        <MainCard/>
-                        <SmallCardsList/>
-                        <Footer/>
-                    </>
-                    :
-                    <button style={{width: "40px"}} onClick={logout}>exit</button>
-                }
+                <Banner/>
+                <MainCard/>
+                <SmallCardsList/>
             </div>
+            <button style={{width: "40px"}} onClick={logout}>exit</button>
+            <Footer/>
+        </>
     );
 };
 

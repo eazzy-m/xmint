@@ -1,0 +1,71 @@
+.countdown {
+  position: relative;
+  width: 240px;
+  height: 60px;
+  margin: 29px 0 24px ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .countdown__fragment {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .countdown__number {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 40px;
+    color: #161C1E;
+    text-align: center;
+  }
+
+  .number-description {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: #7D8081;
+  }
+  .release {
+    position: absolute;
+    left: -16px;
+    width: 336px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+
+.countdown_light-mode {
+  .countdown__number, .release {
+    color: #161C1E;
+  }
+
+  .number-description {
+    color: #7D8081;
+  }
+}
+
+.countdown_dark-mode {
+  .countdown__number, .release {
+    color: #FFF;
+  }
+
+  .number-description {
+    color: #FFF;
+    opacity: 0.56;
+  }
+
+  .release {
+
+  }
+}

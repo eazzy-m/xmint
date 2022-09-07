@@ -4,7 +4,7 @@ import "./MainCard.scss";
 import {getFirst} from "../../api/api";
 import {ICard} from "../../interfaces/ICard";
 import {Link} from "react-router-dom";
-
+import Countdown from "../countdown/countdown";
 
 const MainCard = () => {
 
@@ -27,9 +27,7 @@ const MainCard = () => {
         <div className={"main-card"}>
             <div className={"main-card__info"}>
                 <h1 className={"main-card__title"}>Don't miss the first drop.</h1>
-                <div className={"countdown"}>
-                    <span>{card?.release_datetime}</span>
-                </div>
+                <Countdown mode={true} releaseDate={card?.release_datetime}/>
                 <div className={"card__interface"}>
                     <button className={"button button_small"}>Pre-Order Now</button>
                     <Link className={"card__link card__link_light-background"} to="#">Learn more &rsaquo;</Link>

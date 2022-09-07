@@ -59,7 +59,7 @@ class Fetcher {
                 return Promise.reject(error);
             }
         );
-    }
+    };
 
     handleErrorData = <TResponse>(data: any) => {
         let htmlError = '';
@@ -129,12 +129,10 @@ export const signIn = (data: ISignIn) => {
             method: 'POST',
             data: {...data},
         }
-    )
+    );
 };
 
 const fetcher = new Fetcher({});
-
-//https://dev.xmint.co/api/v1/drops/?limit=4&offset=5
 
 const token = localStorage.getItem('accessToken');
 
@@ -143,30 +141,29 @@ export const getBanner = () => {
        url: "/drops/nearest_drop_banner/",
        method: "GET",
        headers: {
-           Authorization: `Bearer ${token}`,
+           Authorization: `Bearer ${token}`
        }
+   });
+};
 
-   })
-}
-
-export const getCards = () => {
+export const getCards = (limit: number, offset: number) => {
     return fetcher.request<any, any>({
-        url: "/drops/?limit=4&offset=5",
+        url: `/drops/?limit=${limit}&offset=${offset}`,
         method: "GET",
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`
         }
-    })
-}
+    });
+};
 export const getFirst = () => {
     return fetcher.request<any, any>({
-        url: "/drops/?limit=1&offset=1",
+        url: "/drops/?limit=1&offset=0",
         method: "GET",
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`
         }
-    })
-}
+    });
+};
 
 
 

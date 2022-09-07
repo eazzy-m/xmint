@@ -24,13 +24,6 @@
   line-height: 52px;
 }
 
-.countdown {
-  width: 240px;
-  height: 60px;
-  border: 1px solid #D0D2D2;
-  margin: 29px 0 24px ;
-}
-
 .card__interface {
   width: 251px;
   display: flex;
@@ -73,7 +66,7 @@
   text-decoration: none;
 }
 
-.card__link_light-background {
+.card__link_dark-background {
   color: #fff;
   padding: 3px 1px 1px 1px;
   &:hover {
@@ -81,7 +74,7 @@
   }
 }
 
-.card__link_dark-background {
+.card__link_light-background {
   color: #161C1E;
   padding: 2px 1px 1px 1px;
   &:hover {
