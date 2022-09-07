@@ -1,7 +1,8 @@
+@import "../../constants/styleConstants";
+
 .page {
   height: calc(100vh - 96px);
   width: calc(100vw - 588px);
-  //border: 1px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,9 +15,7 @@
 
   .container__title {
     width: 432px;
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 500;
+    @include font500;
     font-size: 34px;
     line-height: 40px;
     padding: 0;
@@ -32,9 +31,7 @@
   .custom-field {
     display: flex;
     flex-direction: column;
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 400;
+    @include font400;
     font-size: 16px;
     line-height: 20px;
     position: relative;
@@ -45,13 +42,13 @@
       width: 432px;
       height: 48px;
       border-radius: 6px;
-      border: 1px solid #D0D2D2;
+      border: 1px solid $border-color;
       color: black;
       outline: none;
       appearance: none;
 
         &:hover, &:focus-within {
-          border-color: #161C1E;
+          border-color: $dark-color;
         }
     }
 
@@ -60,12 +57,10 @@
       left: 15px;
       top: calc(50% - 1px);
       transform: translateY(10%);
-      font-family: 'Roboto', sans-serif;
-      font-style: normal;
-      font-weight: 400;
+      @include font400;
       font-size: 16px;
       line-height: 20px;
-      color: #D0D2D2;
+      color: $border-color;
       transition: all .2s ease;
     }
 
@@ -74,10 +69,10 @@
       padding: 0 5px;
       left: 8px;
       top: 6px;
-      color: #161C1E;
+      color: $dark-color;
       font-size: 13px;
       line-height: 16px;
-      background-color: #fff;
+      background-color: $light-color;
     }
   }
 
@@ -87,7 +82,7 @@
     width: 18px;
     height: 18px;
     border-radius: 4px;
-    border: 1px solid #D0D2D2;
+    border: 1px solid $border-color;
 
     &[type="checkbox"]:checked:before {
       content: ' \2714';
@@ -96,26 +91,24 @@
       display: block;
       width: 18px;
       height: 18px;
-      background-color: #161C1E;
+      background-color: $dark-color;
       position: relative;
       border-radius: 4px;
     }
   }
 
   .button {
-    font-family: 'Roboto', sans-serif;
-    color: #fff;
-    font-style: normal;
-    font-weight: 500;
+    @include font500;
+    color: $light-color;
     font-size: 16px;
     line-height: 20px;
     height: 48px;
     border-radius: 6px;
     text-transform: none;
     cursor: pointer;
-    background-color: #458FAC;
+    background-color: $button-color;
     &:hover {
-      background-color: #246a85;
+      background-color: $button-hover-color;
     }
   }
 
@@ -131,23 +124,19 @@
   }
 
   .form__link {
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 400;
+    @include font400;
     font-size: 14px;
     line-height: 18px;
-    color: #161C1E;
-    text-decoration-color: #D0D2D2;
+    color: $dark-color;
+    text-decoration-color: $border-color;
   }
 
   .form__paragraph {
     margin-top: 20px;
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 400;
+    @include font400;
     font-size: 14px;
     line-height: 18px;
-    color: #7D8081;
+    color: $grey-color;
   }
 
   .form__wrapper {
@@ -177,18 +166,14 @@
   .checkbox-label {
     text-align: center;
     margin-left: 8px;
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 400;
+    @include font400;
     font-size: 14px;
     line-height: 18px;
   }
 }
 
 .error-message {
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: 400;
+  @include font400;
   font-size: 14px;
   line-height: 18px;
   margin-top: 5px;

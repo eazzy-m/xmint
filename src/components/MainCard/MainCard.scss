@@ -1,10 +1,11 @@
+@import "../../constants/styleConstants";
 .main-card {
   width: 100%;
   min-height: 560px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #F2F2F3;
+  background-color: $main-page-background-color;
 }
 
 .main-card__info {
@@ -16,10 +17,8 @@
   margin-left: 82px;
 }
 .main-card__title {
-  font-family: 'Roboto', sans-serif;
-  color: #161C1E;
-  font-style: normal;
-  font-weight: 500;
+  @include font500;
+  color: $dark-color;
   font-size: 46px;
   line-height: 52px;
 }
@@ -32,19 +31,17 @@
 }
 
 .button {
-  font-family: 'Roboto', sans-serif;
-  color: #fff;
-  font-style: normal;
-  font-weight: 500;
+  @include font500;
+  color: $light-color;
   font-size: 16px;
   line-height: 20px;
   height: 48px;
   border-radius: 6px;
   text-transform: none;
   cursor: pointer;
-  background-color: #458FAC;
+  background-color: $button-color;
   &:hover {
-    background-color: #246a85;
+    background-color: $button-hover-color;
   }
 }
 
@@ -58,27 +55,25 @@
 }
 
 .card__link {
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: 500;
+  @include font500;
   font-size: 16px;
   line-height: 20px;
   text-decoration: none;
 }
 
 .card__link_dark-background {
-  color: #fff;
+  color: $light-color;
   padding: 3px 1px 1px 1px;
   &:hover {
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid $light-color;
   }
 }
 
 .card__link_light-background {
-  color: #161C1E;
+  color: $dark-color;
   padding: 2px 1px 1px 1px;
   &:hover {
-    border-bottom: 1px solid #161C1E;
+    border-bottom: 1px solid $dark-color;
   }
 }
 

@@ -1,3 +1,5 @@
+@import "../../constants/styleConstants";
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -18,7 +20,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: "Roboto", sans-serif;
+  @include font500;
   font-size: 14px;
   line-height: 18px;
 }
@@ -26,19 +28,17 @@
 .header__question {
   font-weight: 400;
   text-align: right;
-  color: #7D8081;
+  color: $grey-color;
 }
 
 .header__button {
   border-radius: 6px;
   min-height: 36px;
   padding: 9px 12px;
-  background-color: #fff;
-  border: 1px solid #D0D2D2;
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: 500;
+  background-color: $light-color;
+  border: 1px solid $border-color;
+  @include font500;
   font-size: 14px;
   line-height: 18px;
-  color: #161C1E;
+  color: $dark-color;
 }
