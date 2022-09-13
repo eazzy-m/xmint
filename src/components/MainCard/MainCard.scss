@@ -54,17 +54,26 @@
   border: none;
 }
 
+.button_big {
+  width: 234px;
+  border: none;
+}
+
 .card__link {
   @include font500;
   font-size: 16px;
   line-height: 20px;
+  border: none;
+  background-color: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .card__link_dark-background {
   color: $light-color;
-  padding: 3px 1px 1px 1px;
+  padding: 2px 1px 1px 1px;
   &:hover {
+    padding: 3px 1px 1px 1px;
     border-bottom: 1px solid $light-color;
   }
 }
@@ -73,6 +82,7 @@
   color: $dark-color;
   padding: 2px 1px 1px 1px;
   &:hover {
+    padding: 3px 1px 1px 1px;
     border-bottom: 1px solid $dark-color;
   }
 }

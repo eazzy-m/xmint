@@ -155,6 +155,7 @@ export const getCards = (limit: number, offset: number) => {
         }
     });
 };
+
 export const getFirst = () => {
     return fetcher.request<any, any>({
         url: "/drops/?limit=1&offset=0",
@@ -165,5 +166,14 @@ export const getFirst = () => {
     });
 };
 
+//https://dev.xmint.co/api/v1/drops/e4abc6f8-f95a-4da5-b4de-b76cc6914189/
 
-
+export const getCardById = (id: unknown) => {
+    return fetcher.request<any, any>({
+        url: `/drops/${id}/`,
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}

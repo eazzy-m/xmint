@@ -10,7 +10,7 @@ const Banner = () => {
     useEffect(() => {
         getBanner()
             .then(res =>  setBanner(res.data.drop_banner))
-            .catch(err => setError(err));
+            .catch(err => {setError(err)});
     }, [])
 
     return (

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import SmallCard from "../CardSmall/SmallCard";
 import {getCards} from "../../api/api";
@@ -64,6 +64,7 @@ const SmallCardsList = () => {
                         <SmallCard key={card.id}
                                    image={card.drop_banner}
                                    title={card.title}
+                                   id={card.id}
                                    releaseDatetime={card.release_datetime}
                                    backStyle={style[index]}
                         />

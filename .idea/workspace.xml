@@ -4,34 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="778ccc03-b1c0-460f-89c7-4c95cb77cdcb" name="Changes" comment="fixed cors error/ added form validation, redux storage for the auth state">
-      <change afterPath="$PROJECT_DIR$/src/assets/logo/Logo-Xmint-black 4.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/ring/Default.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/user/user-svgrepo-com.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/wallet/Wallet.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Banner/Banner.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Banner/Banner.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CardSmall/SmallCard.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/CardSmall/SmallCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MainCard/MainCard.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MainCard/MainCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SmallCardsList/SmallCardsList.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SmallCardsList/SmallCardsList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/ICard.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/Footer/Footer.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/Footer/Footer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/Header/HeaderMainPage.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/MainPage/Main.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/MainPage/MainPage.scss" afterDir="false" />
+    <list default="true" id="778ccc03-b1c0-460f-89c7-4c95cb77cdcb" name="Changes" comment="add style constants file, implemented mixins and scss variables">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/About/About.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/Header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/SignIn/SignIn.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/SignIn/SignIn.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/SignIn/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/page/SignIn/SignIn.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/slice/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slice/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FormInput/FormInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormInput/FormInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SubmitButton/SubmitButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SubmitButton/SubmitButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/styleConstants.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/styleConstants.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -64,22 +41,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Mikalai Kozich/WebstormProjects/xmint/src/assets/ring",
-    "list.type.of.created.stylesheet": "SCSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\Mikalai Kozich\\WebstormProjects\\xmint\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mikalai Kozich/WebstormProjects/xmint&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Mikalai Kozich\\WebstormProjects\\xmint\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Mikalai Kozich\WebstormProjects\xmint\src\assets\ring" />
@@ -115,7 +92,10 @@
       <workItem from="1661952425166" duration="649000" />
       <workItem from="1662052355599" duration="259000" />
       <workItem from="1662117986356" duration="7112000" />
-      <workItem from="1662359066665" duration="48031000" />
+      <workItem from="1662359066665" duration="73331000" />
+      <workItem from="1662704057943" duration="596000" />
+      <workItem from="1662705873895" duration="14000" />
+      <workItem from="1662968320872" duration="9000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1661511945034</created>
@@ -152,7 +132,28 @@
       <option name="project" value="LOCAL" />
       <updated>1662378507438</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added main page/footer/header, fetch cards, banner. user mail save in the store">
+      <created>1662474408423</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1662474408423</updated>
+    </task>
+    <task id="LOCAL-00007" summary="implemented infinite scroll, countdown and release date">
+      <created>1662553919943</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1662553919943</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add style constants file, implemented mixins and scss variables">
+      <created>1662560729364</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1662560729364</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,6 +175,9 @@
     <MESSAGE value="added header, rude structure for form" />
     <MESSAGE value="styled form, added api to signIn, slider" />
     <MESSAGE value="fixed cors error/ added form validation, redux storage for the auth state" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed cors error/ added form validation, redux storage for the auth state" />
+    <MESSAGE value="added main page/footer/header, fetch cards, banner. user mail save in the store" />
+    <MESSAGE value="implemented infinite scroll, countdown and release date" />
+    <MESSAGE value="add style constants file, implemented mixins and scss variables" />
+    <option name="LAST_COMMIT_MESSAGE" value="add style constants file, implemented mixins and scss variables" />
   </component>
 </project>

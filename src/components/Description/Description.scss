@@ -1,0 +1,62 @@
+@import "../../constants/styleConstants";
+
+.description {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    min-height: 766px;
+    padding: 80px 115px;
+}
+
+
+.image-container {
+    width: 320px;
+    height: 440px;
+    margin-right: 123px;
+}
+
+
+.description__image {
+    width: 100%;
+    height: 100%;
+}
+
+.description__content {
+    width: 626px;
+}
+
+.container__title {
+    width: 664px;
+    @include font500;
+    font-size: 34px;
+    line-height: 40px;
+    color: $dark-color;
+}
+
+.container__title_text_center {
+    text-align: center;
+}
+
+.container__paragraph {
+    @include font400;
+    font-size: 16px;
+    line-height: 24px;
+    color: $dark-color;
+    margin: 16px auto;
+}
+
+.description__price {
+    @include font500;
+    font-size: 24px;
+    line-height: 30px;
+    color: $dark-color;
+}
+
+.description__order {
+    margin-top: -32px;
+    width: 540px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

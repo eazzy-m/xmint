@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import "./MainCard.scss";
 import {getFirst} from "../../api/api";
 import {ICard} from "../../interfaces/ICard";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import { Typography } from '@mui/material';
 import Countdown from "../countdown/countdown";
 
 const MainCard = () => {
 
     const [card, setCard] = useState<ICard>();
     const [error, setError] = useState();
-
+    const navigate = useNavigate();
     useEffect(() => {
         getFirst()
             .then(res => setCard(res.data.results[0]))
@@ -30,13 +31,15 @@ const MainCard = () => {
                 <Countdown mode={true} releaseDate={card?.release_datetime}/>
                 <div className={"card__interface"}>
                     <button className={"button button_small"}>Pre-Order Now</button>
-                    <Link className={"card__link card__link_light-background"} to="#">Learn more &rsaquo;</Link>
+                    <button className={"card__link card__link_light-background"}
+                    onClick={() => {navigate("/learn-more", {state: card?.id})}}
+                    >Learn more &rsaquo;</button>
                 </div>
             </div>
             <div className={"main-card__image"}>
                 <img src={card?.drop_banner} alt={card?.title} className={"main-card__image-banner"}/>
                 {errorHandler() && //@ts-ignore
-                    <span className="error-message">{error?.response?.data}</span>}
+                    <Typography className="error-message">{error?.response?.data}</Typography>}
             </div>
             {/*<div className={"main-card__footer"}>*/}
 

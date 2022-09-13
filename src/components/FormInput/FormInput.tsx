@@ -25,6 +25,6 @@ const FormInput = (props: ILoginProps) => {
             {errorHandler() && <span className="error-message">{error?.response?.data[id]}</span>}
         </>
     );
-}
+};
 
 export default FormInput;
