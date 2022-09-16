@@ -1,21 +1,18 @@
-import React, { useEffect } from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {signOutReducer} from "../../redux/slice/auth";
-
-import "./MainPage.scss";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { signOutReducer } from "../../redux/slice/auth";
+import { isAuth } from '../../redux/store';
 import Banner from "../../components/Banner/Banner";
 import MainCard from "../../components/MainCard/MainCard";
 import SmallCardsList from "../../components/SmallCardsList/SmallCardsList";
 import Footer from "../Footer/Footer";
-import { isAuth } from '../../redux/store';
-
+import "./MainPage.scss";
 
 const Main = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const auth = useSelector(isAuth);
 
     const logout = () => {
@@ -28,7 +25,7 @@ const Main = () => {
         if (!auth) {
             logout();
     }
-})
+}, [auth]);
 
     return (
         <>

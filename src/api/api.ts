@@ -132,11 +132,9 @@ export const signIn = (data: ISignIn) => {
     );
 };
 
-const fetcher = new Fetcher({});
+export const fetcher = new Fetcher({});
 
-const token = localStorage.getItem('accessToken');
-
-export const getBanner = () => {
+export const getBanner = (token: unknown) => {
    return fetcher.request<any, any>({
        url: "/drops/nearest_drop_banner/",
        method: "GET",
@@ -146,7 +144,7 @@ export const getBanner = () => {
    });
 };
 
-export const getCards = (limit: number, offset: number) => {
+export const getCards = (limit: number, offset: number, token: unknown) => {
     return fetcher.request<any, any>({
         url: `/drops/?limit=${limit}&offset=${offset}`,
         method: "GET",
@@ -156,7 +154,7 @@ export const getCards = (limit: number, offset: number) => {
     });
 };
 
-export const getFirst = () => {
+export const getFirst = (token: unknown) => {
     return fetcher.request<any, any>({
         url: "/drops/?limit=1&offset=0",
         method: "GET",
@@ -166,9 +164,8 @@ export const getFirst = () => {
     });
 };
 
-//https://dev.xmint.co/api/v1/drops/e4abc6f8-f95a-4da5-b4de-b76cc6914189/
 
-export const getCardById = (id: unknown) => {
+export const getCardById = (id: unknown, token: unknown) => {
     return fetcher.request<any, any>({
         url: `/drops/${id}/`,
         method: "GET",
@@ -176,4 +173,16 @@ export const getCardById = (id: unknown) => {
             Authorization: `Bearer ${token}`
         }
     });
-}
+};
+
+
+//http://localhost:3000/api/v1/users/b0419523-2d98-4dcd-92ab-d8db33490d71/
+export const getUser = (id: unknown, token: unknown) => {
+    return fetcher.request<any, any>({
+        url: `/users/${id}/`,
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+};

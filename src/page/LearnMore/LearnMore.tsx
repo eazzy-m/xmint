@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import Banner from '../../components/Banner/Banner';
 import BrandsList from '../../components/BrandsList/BrandsList';
 import Description from '../../components/Description/Description';
@@ -9,18 +9,20 @@ import Countdown from '../../components/countdown/countdown';
 import "./LearnMore.scss";
 import MembershipWindow from '../../components/MembershipWindow/MembershipWindow';
 import { useLocation } from 'react-router';
-
+import { useSelector } from 'react-redux';
+import { token } from "../../redux/store"
 const LearnMore = () => {
 
   const [card, setCard] = useState<ICard>();
   const [error, setError] = useState();
   const location = useLocation();
   const id = location.state;
-
+  const storeToken = useSelector(token)
+  
   useEffect(() => {
-    getCardById(id)
-    .then(res => setCard(res.data))
-    .catch(err => setError(err));
+    getCardById(id, storeToken)
+      .then(res => setCard(res.data))
+      .catch(err => setError(err));
   }, [id]); 
 
   const errorHandler = (): boolean => {

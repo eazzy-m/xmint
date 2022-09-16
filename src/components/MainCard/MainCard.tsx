@@ -1,21 +1,35 @@
 import {useEffect, useState} from 'react';
-
 import "./MainCard.scss";
 import {getFirst} from "../../api/api";
 import {ICard} from "../../interfaces/ICard";
 import {useNavigate} from "react-router-dom";
 import { Typography } from '@mui/material';
 import Countdown from "../countdown/countdown";
+import { useSelector, useDispatch  } from 'react-redux';
+import { token } from "../../redux/store";
+import { signOutReducer } from '../../redux/slice/auth';
 
 const MainCard = () => {
 
     const [card, setCard] = useState<ICard>();
     const [error, setError] = useState();
+    const storeToken = useSelector(token);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
+
+    const logout = () => {
+        localStorage.clear();
+        dispatch(signOutReducer());
+        navigate("/sign-in");
+    };
     useEffect(() => {
-        getFirst()
+        getFirst(storeToken)
             .then(res => setCard(res.data.results[0]))
-            .catch(err => setError(err));
+            .catch(err => {
+                setError(err);
+                logout();
+            });
     }, []);
 
     const errorHandler = (): boolean => {

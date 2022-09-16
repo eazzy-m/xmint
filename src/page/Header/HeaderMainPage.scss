@@ -1,3 +1,5 @@
+@import "../../constants/styleConstants";
+
 .header_main-page {
   display: flex;
   justify-content: space-between;
@@ -34,5 +36,12 @@
 }
 
 .header__span {
-
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  @include font500;
+  color: $dark-color;
+  font-size: 14px;
+  line-height: 18px;
+  text-transform: capitalize;
 }

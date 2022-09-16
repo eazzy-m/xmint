@@ -1,5 +1,5 @@
 
-import "./SmallCard.scss"
+import "./SmallCard.scss";
 import {useNavigate} from "react-router-dom";
 import Countdown from "../countdown/countdown";
 
@@ -7,6 +7,7 @@ import Countdown from "../countdown/countdown";
 const SmallCard = (props: {image: string, releaseDatetime: string, title: string, backStyle: boolean, id: string}) => {
     const {image, releaseDatetime, title, backStyle, id} = props;
     const navigate = useNavigate();
+    
     return (
         <div className={"small-card"} style={backStyle ? {backgroundColor: "#161C1E"} : {backgroundColor: "#F2F2F3"}}>
             <Countdown releaseDate={releaseDatetime} mode={!backStyle}/>

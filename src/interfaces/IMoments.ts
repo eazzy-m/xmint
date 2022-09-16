@@ -7,7 +7,7 @@ export interface IMoments {
         size: {
             width: number;
             height: number;
-        }
+        };
     };
     id: string;
     moment_preview: string;

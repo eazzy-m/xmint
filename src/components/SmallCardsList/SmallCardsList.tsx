@@ -4,14 +4,27 @@ import SmallCard from "../CardSmall/SmallCard";
 import {getCards} from "../../api/api";
 import {ICard} from "../../interfaces/ICard";
 import "./SmallCardsList.scss";
+import { useSelector, useDispatch } from 'react-redux';
+import { token } from "../../redux/store"
+import { useNavigate } from 'react-router';
+import { signOutReducer } from '../../redux/slice/auth';
 
 const SmallCardsList = () => {
-
     const [cards, setCards] = useState<ICard[]>([]);
     const [error, setError] = useState();
     const [style, setStyle] = useState<boolean[]>([]);
     const [offset, setOffset] = useState(6);
     const [hasMore, setHasMore] = useState(true);
+    const storeToken = useSelector(token);
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
+    const logout = () => {
+        localStorage.clear();
+        dispatch(signOutReducer());
+        navigate("/sign-in");
+    };
     const backgroundPainter = () => {
         const arr = [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [11, 12], [13, 14], [15, 16]];
         const booleansArr = [];
@@ -29,9 +42,12 @@ const SmallCardsList = () => {
 
     useEffect(() => {
         backgroundPainter();
-        getCards(5, 1)
+        getCards(5, 1, storeToken)
             .then(res => setCards(res.data.results))
-            .catch(err => setError(err));
+            .catch(err => {
+                setError(err);
+                logout();
+            });
     }, []);
 
     const errorHandler = (): boolean => {
@@ -40,7 +56,7 @@ const SmallCardsList = () => {
     };
 
     const fetch = async () => {
-        const res = await getCards(4, offset);
+        const res = await getCards(4, offset, storeToken);
         return res.data.results;
     };
 

@@ -11,7 +11,7 @@ const AppRout = () => {
     const token = localStorage.getItem('accessToken');
 
     if (token) {
-       dispatch(signInReducer());
+       dispatch(signInReducer(token));
     } else {
        dispatch(signOutReducer());
     }

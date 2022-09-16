@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import moment from "moment/moment";
 import { Typography } from '@mui/material';
 import "./Countdown.scss"
@@ -10,7 +10,7 @@ const Countdown = (props: {mode: boolean, releaseDate: string | undefined}) => {
         hours: 0,
         minutes: 0,
         seconds: 0
-    })
+    });
 
     let interval: NodeJS.Timer;
 

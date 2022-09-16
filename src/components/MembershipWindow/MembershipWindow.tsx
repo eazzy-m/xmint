@@ -1,6 +1,5 @@
 import "./MembershipWindow.scss";
 
-
 const MembershipWindow = () => {
 
   return (

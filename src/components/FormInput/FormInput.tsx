@@ -1,4 +1,3 @@
-import React from 'react';
 
 import {ILoginProps} from "../../interfaces/ILoginProps";
 
