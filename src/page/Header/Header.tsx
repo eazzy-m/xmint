@@ -2,6 +2,7 @@
 import xMintlogo from "../../assets/logo/Logo-Xmint-black 3.svg";
 import wallet from "../../assets/wallet/Wallet.svg";
 import ring from "../../assets/ring/Default.svg";
+import search from "../../assets/search/search-svgrepo-com.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, FC, MouseEvent } from "react";
 import { useNavigate } from "react-router";
@@ -57,7 +58,8 @@ const Header:FC = () => {
             ?
             <div className={"header_main-page"}>
                 <img alt="logo" src={xMintlogo} className="header__logo" onClick={() => {navigate("/")}}/>
-                <input className="header__input" type="text"/>
+                <img src={search} alt='search' className="search"/>
+                <input className="header__input" type="text" placeholder="Search by creator, athlete or sport"/>
                 <div className={"header-main__container"}>
                     <span className="header__span">Drops</span>
                     <Button sx={{ backgroundColor: "inherit",

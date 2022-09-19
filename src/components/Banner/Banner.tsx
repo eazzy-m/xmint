@@ -6,6 +6,7 @@ import { token } from "../../redux/store"
 import { useNavigate } from 'react-router';
 
 import { signOutReducer } from '../../redux/slice/auth';
+
 const Banner = () => {
     const [banner, setBanner] = useState("");
     const [error, setError] = useState("");
@@ -21,7 +22,7 @@ const Banner = () => {
     
     useEffect(() => {
         getBanner(storeToken)
-            .then(res =>  setBanner(res.data.drop_banner))
+            .then(res => setBanner(res.data.drop_banner))
             .catch(err => {
                 setError(err);
                 logout()

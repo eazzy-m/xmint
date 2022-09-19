@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     isAuth: false,
-    token: ''
+    token: localStorage.getItem('accessToken') || '',
 };
 
 export const auth = createSlice({
@@ -15,7 +15,7 @@ export const auth = createSlice({
         },
         signOutReducer: (state) => {
             state.isAuth = false;
-            state.token = ''
+            state.token = '';
         }
     }
 });

@@ -4,6 +4,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TabComponent from "../TabComponent/TabComponent";
+
+import "./TabsStyle.scss"
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -44,16 +46,54 @@ export default function BasicTabs() {
     setValue(newValue);
   };
 
-  const howMuch = [0, 0, 0, 0]
+  const howMuch = [0, 0, 0, 0];
+
 
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label={`My Gallery ${howMuch[0]}`} {...a11yProps(0)} />
-          <Tab label={`Drops ${howMuch[1]}`} {...a11yProps(1)} />
-          <Tab label={`For Sale ${howMuch[2]}`} {...a11yProps(2)} />
-          <Tab label={`Saved ${howMuch[3]}`} {...a11yProps(3)} />
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" sx={{indicatorColor: "#161C1E"}}>
+          <Tab sx={{
+           fontFamily: 'Roboto',
+           fontStyle: "normal",
+           fontWeight: 500,fontSize: "14px",
+           lineHeight: "18px",
+           color: "#7D8081",
+           '&.Mui-selected': {
+            color: '#161C1E',
+          },
+           }} label={`My Gallery ${howMuch[0]}`} {...a11yProps(0)} />
+          <Tab sx={{
+           fontFamily: 'Roboto',
+           fontStyle: "normal",
+           fontWeight: 500,fontSize: "14px",
+           lineHeight: "18px",
+           color: "#7D8081",
+           '&.Mui-selected': {
+            color: '#161C1E',
+            
+          },
+           }} label={`Drops ${howMuch[1]}`} {...a11yProps(1)} />
+          <Tab sx={{
+           fontFamily: 'Roboto',
+           fontStyle: "normal",
+           fontWeight: 500,fontSize: "14px",
+           lineHeight: "18px",
+           color: "#7D8081",
+           '&.Mui-selected': {
+            color: '#161C1E',
+          },
+           }} label={`For Sale ${howMuch[2]}`} {...a11yProps(2)} />
+          <Tab sx={{
+           fontFamily: 'Roboto',
+           fontStyle: "normal",
+           fontWeight: 500,fontSize: "14px",
+           lineHeight: "18px",
+           color: "#7D8081",
+           '&.Mui-selected': {
+            color: '#161C1E',
+          },
+           }} label={`Saved ${howMuch[3]}`} {...a11yProps(3)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

@@ -66,6 +66,7 @@ const SignIn:FC = () => {
             .then((res) => {
                 getUser(res.id, res.access)
                     .then((userData) => {
+                        localStorage.setItem('userData', JSON.stringify(userData.data));
                         dispatch(fillUsersData(userData.data));
                         dispatch(signInReducer(res.access)); 
                         navigate("/");

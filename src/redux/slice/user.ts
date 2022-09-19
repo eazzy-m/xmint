@@ -1,7 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 import { IUserData } from "../../interfaces/IUserData";
 
-const initialState: IUserData = {
+const rawUserData = localStorage.getItem("userData");
+const userData = rawUserData ? JSON.parse(rawUserData) : {
     email: "",
     username: "",
     id: "",
@@ -9,6 +10,10 @@ const initialState: IUserData = {
     about: null,
     logo: null,
     name: null,
+};
+
+const initialState: IUserData = {
+    ...userData
 };
 
 export const user = createSlice({

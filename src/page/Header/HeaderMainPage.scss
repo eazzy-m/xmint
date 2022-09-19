@@ -17,13 +17,36 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.search {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 212px;
+  z-index: 10;
+}
 .header__input {
   position: relative;
   border-radius: 6px;
   right: 100px;
   width: 598px;
   height: 36px;
+  background-color: #F2F2F3;
+  outline: none;
+  appearance: none;
+  border: none;
+  padding-left: 40px;
+  &:active, &:focus-within {
+    border: 1px solid black;
+    background-color: #FFF;
+    padding-left: 39px;
+  }
+  &::placeholder {
+    @include font400;
+    color: #A2A4A5;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
 }
 
 .header__image {
