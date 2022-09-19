@@ -96,17 +96,18 @@ export default function BasicTabs() {
            }} label={`Saved ${howMuch[3]}`} {...a11yProps(3)} />
         </Tabs>
       </Box>
+
       <TabPanel value={value} index={0}>
-        <TabComponent items={howMuch}/>
+        <TabComponent items={howMuch} fillPhrase={'Once you purchase your moments, they will appear here.'}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <TabComponent items={howMuch}/>
+        <TabComponent items={howMuch} fillPhrase={'Once you purchase your drops, they will appear here.'}/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <TabComponent items={howMuch}/>
+        <TabComponent items={howMuch} fillPhrase={'Once you list your moments for sale, they will appear here.'}/>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <TabComponent items={howMuch}/>
+        <TabComponent items={howMuch} fillPhrase={'Once you save your moments, they will appear here.'}/>
       </TabPanel>
     </Box>
   );

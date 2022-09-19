@@ -3,9 +3,9 @@ import React from 'react';
 import "./TabComponent.scss";
 import logo from "../../assets/logo/Xmint.svg";
 
-const TabComponent = (props: {items: number[]}) => {
+const TabComponent = (props: {items: number[], fillPhrase: string}) => {
 
-  const items = props.items;
+  const {items, fillPhrase} = props;
 
     const flag = false
 
@@ -21,7 +21,7 @@ const TabComponent = (props: {items: number[]}) => {
                 <img alt='logo' src={logo} className=""/>
             </div>
             <span className="empty-description">
-                Once you list your moments for sale, they will appear here.
+                {fillPhrase}
             </span>
         </div>
         }
