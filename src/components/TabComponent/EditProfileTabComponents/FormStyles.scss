@@ -1,0 +1,48 @@
+@import "../../../constants/styleConstants";
+.css-9advfc-MuiButtonBase-root-MuiButton-root {
+    padding: 0 !important;
+}
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
+    padding: 0px 6px !important;
+    border-radius: 4px !important;
+    margin-left: -4px !important;
+    background: #fff !important;
+}
+
+.form-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 23px;
+    left: 390px;
+}
+
+.update-avatar {
+    width: 220px;
+    margin: 24px 0 39px;
+    display: flex;
+    align-items: center;
+}
+
+.user-logo-wrapper {
+    margin-right: 20px;
+}
+
+.form-title {
+    @include font500;
+    font-size: 34px;
+    line-height: 40px;
+}
+
+.patch-button-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    @include font500;
+    font-size: 20px;
+    line-height: 28px;
+    color: $dark-color;
+    margin-bottom: 12px;
+}

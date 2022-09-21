@@ -53,6 +53,25 @@ const Header:FC = () => {
         setAnchorAvatarEl(null);
     };
 
+    const avatarStyles = {
+         width: 32,
+         height: 32,
+         border: "1px solid #458FAC",
+         borderRadius: "50%" 
+        };
+
+    const buttonStyles = { 
+        backgroundColor: "inherit",
+        border: "none",
+        cursor: "pointer",
+        fontFamily: "Roboto",
+        fontWeight: 500,
+        color: "#161C1E",
+        fontSize: "14px",
+        lineHeight: "18px",
+        textTransform: "capitalize"
+        };
+
     return (
         auth
             ?
@@ -62,15 +81,7 @@ const Header:FC = () => {
                 <input className="header__input" type="text" placeholder="Search by creator, athlete or sport"/>
                 <div className={"header-main__container"}>
                     <span className="header__span">Drops</span>
-                    <Button sx={{ backgroundColor: "inherit",
-                                border: "none",
-                                cursor: "pointer",
-                                fontFamily: "Roboto",
-                                fontWeight: 500,
-                                color: "#161C1E",
-                                fontSize: "14px",
-                                lineHeight: "18px",
-                                textTransform: "capitalize"}}
+                    <Button sx={buttonStyles}
                             aria-controls={openMArketplace ? "header__span" : undefined}
                             aria-expanded={openMArketplace ? true : undefined}
                             endIcon={openMArketplace ? <KeyboardArrowUp/> : <KeyboardArrowDown/>}
@@ -134,9 +145,9 @@ const Header:FC = () => {
                             aria-expanded={openAvatar ? 'true' : undefined}
                             >
                         {userLogo ? 
-                        <Avatar  src={userLogo} sx={{ width: 32, height: 32 }}/> 
+                        <Avatar  src={userLogo} sx={avatarStyles}/> 
                         : 
-                        <Avatar sx={{ width: 32, height: 32 }}>{avatarFiller()}</Avatar>}
+                        <Avatar sx={avatarStyles}>{avatarFiller()}</Avatar>}
                         
                     </IconButton>
                     <Menu

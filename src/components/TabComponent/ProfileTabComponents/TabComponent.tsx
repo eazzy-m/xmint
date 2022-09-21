@@ -1,19 +1,22 @@
-import React from 'react';
 
 import "./TabComponent.scss";
-import logo from "../../assets/logo/Xmint.svg";
+import logo from "../../../assets/logo/Xmint.svg";
 
-const TabComponent = (props: {items: number[], fillPhrase: string}) => {
+const TabComponent = (props: {items: any[] | undefined, fillPhrase: string}) => {
 
   const {items, fillPhrase} = props;
 
-    const flag = false
+  const itemsChecker = () => items ? items : [];
 
   return (
     <div className='tab-component'>
-        {flag ? 
+        {itemsChecker().length !== 0 ? 
         <div className='moments__list'>
-            
+            {itemsChecker().map((item, index) => 
+            <div key={index}>
+                {item}
+              </div>
+              )}
         </div>
          : 
         <div className='empty-list'>
@@ -27,6 +30,6 @@ const TabComponent = (props: {items: number[], fillPhrase: string}) => {
         }
     </div>
   );
-}
-;
+};
+
 export default TabComponent;

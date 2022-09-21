@@ -2,6 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import { IUserData } from "../../interfaces/IUserData";
 
 const rawUserData = localStorage.getItem("userData");
+
 const userData = rawUserData ? JSON.parse(rawUserData) : {
     email: "",
     username: "",
@@ -30,8 +31,13 @@ export const user = createSlice({
             state.logo = payload.logo;
             state.name = payload.name;
             state.is_mfaEnable = payload.is_mfaEnable;
+        }, 
+        setUsersData: (state, {payload}) => {
+            state.username = payload.username;
+            state.about = payload.about;
+            state.name = payload.name;
         }
     }
 });
 
-export const { fillUsersData } = user.actions;
+export const { fillUsersData, setUsersData } = user.actions;

@@ -2,6 +2,7 @@ import * as Sentry from '@sentry/react';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method, CancelToken, AxiosError } from 'axios';
 import { toCapitalizeChart1 } from '../external/method';
 import {ISignIn} from "../interfaces/ISignIn";
+import { IUpdateUserData } from '../interfaces/IUpdateUserData';
 
 
 
@@ -185,4 +186,63 @@ export const getUser = (id: unknown, token: unknown) => {
             Authorization: `Bearer ${token}`
         }
     });
+};
+
+//https://dev.xmint.co/api/v1/users/25aaabb1-009b-4d44-908c-6e75a9101606/saved/?limit=20&offset=0
+//Saved?
+export const getSaved = (id: unknown, token: unknown) => {
+    return fetcher.request<any, any>({
+        url: `/users/${id}/saved/?limit=20&offset=0`,
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+};
+//https://dev.xmint.co/api/v1/users/25aaabb1-009b-4d44-908c-6e75a9101606/editions/?limit=20&offset=0
+//editions
+export const getEditions = (id: unknown, token: unknown) => {
+    return fetcher.request<any, any>({
+        url: `/users/${id}/editions/?limit=20&offset=0`,
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+};
+//https://dev.xmint.co/api/v1/users/25aaabb1-009b-4d44-908c-6e75a9101606/editions/?limit=20&offset=0&is_on_sale=True
+//on sale
+export const getOnSale = (id: unknown, token: unknown) => {
+    return fetcher.request<any, any>({
+        url: `/users/${id}/editions/?limit=20&offset=0&is_on_sale=True`,
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+};
+//https://dev.xmint.co/api/v1/users/25aaabb1-009b-4d44-908c-6e75a9101606/drops/?limit=20&offset=0
+//drops
+export const getDrops = (id: unknown, token: unknown) => {
+    return fetcher.request<any, any>({
+        url: `/users/${id}/drops/?limit=20&offset=0`,
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+};
+//https://dev.xmint.co/api/v1/users/25aaabb1-009b-4d44-908c-6e75a9101606/
+//patch users data
+
+export const updateUser = (data: IUpdateUserData, id: string, token: unknown ) => {
+    return fetcher.request<any, any>({
+            url: `/users/${id}/`,
+            method: 'PATCH',
+            data: {...data},
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    );
 };

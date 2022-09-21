@@ -4,6 +4,7 @@ import Main from "../page/MainPage/Main";
 import NotFound from "../page/NotFound/NotFound";
 import LearnMore from "../page/LearnMore/LearnMore";
 import Profile from "../page/Profile/Profile";
+import EditProfile from "../page/EditProfile/EditProfile";
 export interface IRoute {
     path: string,
     component: React.ComponentType;
@@ -15,7 +16,8 @@ export enum RouteNames {
     MAIN="/",
     NOTFOUND="*",
     LEARNMORE="/learn-more",
-    PROFILE="/profile"
+    PROFILE="/profile",
+    EDITPROFILE="/edit-profile"
 };
 
 export const publicRoutes: IRoute[] = [
@@ -29,4 +31,5 @@ export const privateRoutes: IRoute[] = [
     {path: RouteNames.NOTFOUND, component: NotFound},
     {path: RouteNames.LEARNMORE, component: LearnMore},
     {path: RouteNames.PROFILE, component: Profile},
+    {path: RouteNames.EDITPROFILE, component: EditProfile},
 ];

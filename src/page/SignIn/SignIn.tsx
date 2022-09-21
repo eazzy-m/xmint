@@ -57,7 +57,6 @@ const SignIn:FC = () => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        setData(initialData);
         signIn(data)
             .then(res => {
                 localStorage.setItem('accessToken', res.data.access);
@@ -74,12 +73,12 @@ const SignIn:FC = () => {
                     .catch((err) => setError(err));
             })
             .catch((err) => setError(err));
+        setData(initialData);
     };
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target;
         setData({...data, [name]: value});
-        //@ts-ignore
     };
 
     const showPassword: MouseEventHandler = (): void => {
