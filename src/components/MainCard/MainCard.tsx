@@ -1,41 +1,39 @@
-import {useEffect, useState} from 'react';
-import "./MainCard.scss";
-import {getFirst} from "../../api/api";
-import {ICard} from "../../interfaces/ICard";
-import {useNavigate} from "react-router-dom";
-import { Typography } from '@mui/material';
-import Countdown from "../countdown/countdown";
-import { useSelector, useDispatch  } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import { token } from "../../redux/store";
-import { signOutReducer } from '../../redux/slice/auth';
+import { getFirst } from "../../api/api";
+import { ICard } from "../../interfaces/ICard";
+import defaultImage from "../../assets/default-image/XMint1_Pack_Logo_001.png"
+import Countdown from "../countdown/countdown";
+
+import "./MainCard.scss";
 
 const MainCard = () => {
 
     const [card, setCard] = useState<ICard>();
-    const [error, setError] = useState();
     const storeToken = useSelector(token);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    
 
-    const logout = () => {
-        localStorage.clear();
-        dispatch(signOutReducer());
-        navigate("/sign-in");
+
+    const filler = {
+        drop_banner: defaultImage,
+        id: Date.now() + '',
+        is_released: true,
+        is_sold_out: true,
+        marketplace_banner: '',
+        number: 0,
+        pack_artwork: '',
+        price: 0,
+        release_datetime: '',
+        title: '',
     };
+
     useEffect(() => {
         getFirst(storeToken)
             .then(res => setCard(res.data.results[0]))
-            .catch(err => {
-                setError(err);
-                logout();
-            });
+            .catch(() => setCard(filler));
     }, []);
-
-    const errorHandler = (): boolean => {
-        //@ts-ignore
-        return error && Object.keys(error?.response?.data).includes(id);
-    };
 
     return (
 
@@ -52,8 +50,6 @@ const MainCard = () => {
             </div>
             <div className={"main-card__image"}>
                 <img src={card?.drop_banner} alt={card?.title} className={"main-card__image-banner"}/>
-                {errorHandler() && //@ts-ignore
-                    <Typography className="error-message">{error?.response?.data}</Typography>}
             </div>
             {/*<div className={"main-card__footer"}>*/}
 

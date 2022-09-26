@@ -49,7 +49,6 @@ const Countdown = (props: {mode: boolean, releaseDate: string | undefined}) => {
         <div className={`countdown ${mode ? "countdown_light-mode" : "countdown_dark-mode"}`}>
             {isReleased
                 ?
-
                 <>
                     <div className="countdown__fragment">
                         <span className="countdown__number ">{countdownTime.days}</span>

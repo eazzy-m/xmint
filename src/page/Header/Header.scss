@@ -43,3 +43,9 @@
   line-height: 18px;
   color: $dark-color;
 }
+
+@media screen and (max-width: 900px) {
+  .header {
+    width: calc(100vw);
+  }
+}

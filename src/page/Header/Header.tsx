@@ -7,13 +7,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, FC, MouseEvent } from "react";
 import { useNavigate } from "react-router";
 import { isAuth, userName, logo } from "../../redux/store";
-import { Menu, MenuItem, Avatar, IconButton, ListItemIcon } from "@mui/material";
+import { Menu, MenuItem, Avatar, IconButton, ListItemIcon, Button, ButtonGroup } from "@mui/material";
 import { KeyboardArrowDown, KeyboardArrowUp, Logout, BookmarkBorderOutlined, AccountCircleOutlined } from "@mui/icons-material";
-import Button from "@mui/material/Button";
+import DehazeIcon from '@mui/icons-material/Dehaze';
 import { signOutReducer } from "../../redux/slice/auth";
-
+import {avatarMenuStyles, avatarStyles, burgerButtonStyles, buttonStyles, marketplaceMenuStyles} from "./HederStyleConstants";
+import ClearIcon from '@mui/icons-material/Clear';
+import { isModalOpen } from "../../redux/store";
+import { openModal, closeModal } from "../../redux/slice/headerModal";
 import "./Header.scss";
 import "./HeaderMainPage.scss";
+import HeaderDropdown from "../../components/HeaderDropdown/HeaderDropdown";
 
 const Header:FC = () => {
 
@@ -26,7 +30,8 @@ const Header:FC = () => {
     const userLogo = useSelector(logo);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
+    const modal = useSelector(isModalOpen);
+
     const logout = () => {
         localStorage.clear();
         dispatch(signOutReducer());
@@ -34,10 +39,7 @@ const Header:FC = () => {
     };
 
     const avatarFiller = (): string => {
-        if (UserName) {
-            return UserName[0].toUpperCase();
-        }
-        return "!";
+         return UserName ? UserName[0].toUpperCase() : "!";
     };
 
     const handleMarketplaceClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
@@ -53,32 +55,22 @@ const Header:FC = () => {
         setAnchorAvatarEl(null);
     };
 
-    const avatarStyles = {
-         width: 32,
-         height: 32,
-         border: "1px solid #458FAC",
-         borderRadius: "50%" 
-        };
-
-    const buttonStyles = { 
-        backgroundColor: "inherit",
-        border: "none",
-        cursor: "pointer",
-        fontFamily: "Roboto",
-        fontWeight: 500,
-        color: "#161C1E",
-        fontSize: "14px",
-        lineHeight: "18px",
-        textTransform: "capitalize"
-        };
+    const toggleModalHeader = () => {
+        modal ? dispatch(closeModal()) : dispatch(openModal());
+    };
 
     return (
         auth
             ?
             <div className={"header_main-page"}>
-                <img alt="logo" src={xMintlogo} className="header__logo" onClick={() => {navigate("/")}}/>
-                <img src={search} alt='search' className="search"/>
-                <input className="header__input" type="text" placeholder="Search by creator, athlete or sport"/>
+                <img alt="logo" src={xMintlogo} className="header__logo" onClick={() => {
+                    dispatch(closeModal())
+                    navigate("/")
+                    }}/>
+                <div className="header__input-wrapper">
+                    <img src={search} alt='search' className="search"/>
+                    <input className="header__input" type="text" placeholder="Search by creator, athlete or sport"/>
+                </div>
                 <div className={"header-main__container"}>
                     <span className="header__span">Drops</span>
                     <Button sx={buttonStyles}
@@ -94,31 +86,9 @@ const Header:FC = () => {
                           open={openMArketplace}
                           onClose={handleClose}
                           PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            '&:before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
-            },
-          },
-        }}
+                            elevation: 0,
+                            sx: marketplaceMenuStyles
+                            }}
                           transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                           MenuListProps={{
@@ -132,10 +102,24 @@ const Header:FC = () => {
                         <MenuItem onClick={handleClose}>Snowboarding</MenuItem>
                         <MenuItem onClick={handleClose}>Tennis</MenuItem>
                     </Menu>
+                    <ButtonGroup sx={{display: "flex", gap: "26px"}}>
+                        {!modal &&
+                            <>
+                                <img src={ring} alt="ringIcon" className={"header__image"}/>
+                                <img src={wallet} alt="wallet icon" className={"header__image"}/>
+                            </>
+                        }
 
-                    <img src={ring} alt="ringIcon" className={"header__image"}/>
-                    <img src={wallet} alt="wallet icon" className={"header__image"}/>
-
+                        <IconButton sx={burgerButtonStyles} onClick={toggleModalHeader}>
+                            {modal 
+                            ?
+                            <ClearIcon/>
+                            :
+                            <DehazeIcon/>
+                            }
+                        </IconButton>
+                        {modal && <HeaderDropdown/>}
+                    </ButtonGroup>
                     <IconButton
                             onClick={handleAvatarClick}
                             size="small"
@@ -151,59 +135,37 @@ const Header:FC = () => {
                         
                     </IconButton>
                     <Menu
-        anchorEl={anchorAvatarEl}
-        id="account-menu"
-        open={openAvatar}
-        onClose={handleClose}
-        onClick={handleClose}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            '&:before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
-            },
-          },
-        }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-      >
-        <MenuItem onClick={() => {navigate("/profile")}}>
-            <ListItemIcon>
-                <AccountCircleOutlined/>
-            </ListItemIcon>
-            View profile
-        </MenuItem>
-        <MenuItem>
-            <ListItemIcon>
-            <   BookmarkBorderOutlined />
-            </ListItemIcon>
-            Saved
-        </MenuItem>
-        <MenuItem onClick={() => {logout()}}>
-            <ListItemIcon>
-                <Logout />
-            </ListItemIcon>
-            Logout
-        </MenuItem>
-      </Menu>
+                        anchorEl={anchorAvatarEl}
+                        id="account-menu"
+                        open={openAvatar}
+                        onClose={handleClose}
+                        onClick={handleClose}
+                        PaperProps={{
+                        elevation: 0,
+                        sx: avatarMenuStyles,
+                        }}
+                        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                    >
+                        <MenuItem onClick={() => {navigate("/profile")}}>
+                            <ListItemIcon>
+                                <AccountCircleOutlined/>
+                            </ListItemIcon>
+                            View profile
+                        </MenuItem>
+                        <MenuItem>
+                            <ListItemIcon>
+                            <   BookmarkBorderOutlined />
+                            </ListItemIcon>
+                            Saved
+                        </MenuItem>
+                        <MenuItem onClick={() => {logout()}}>
+                            <ListItemIcon>
+                                <Logout />
+                            </ListItemIcon>
+                            Logout
+                        </MenuItem>
+                    </Menu>
  
                 </div>
             </div>
@@ -217,6 +179,6 @@ const Header:FC = () => {
             </div>
 
     );
-}
+};
 
 export default Header;

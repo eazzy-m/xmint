@@ -1,11 +1,12 @@
 import { configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
 import { auth } from "./slice/auth";
 import { user } from "./slice/user";
-
+import { modal } from"./slice/headerModal";
 export const store = configureStore({
     reducer: {
         auth: auth.reducer,
-        user: user.reducer
+        user: user.reducer,
+        modal: modal.reducer
     },
     // middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     //   serializableCheck: false
@@ -25,6 +26,8 @@ export const isMaEnable = (state: RootState) => state.user.is_mfaEnable;
 export const about = (state: RootState) => state.user.about;
 export const logo = (state: RootState) => state.user.logo;
 export const name = (state: RootState) => state.user.name;
+
+export const isModalOpen = (state: RootState) => state.modal.isOpen;
 
 export type AppThunk<ReturnType = void> = ThunkAction<
     ReturnType,

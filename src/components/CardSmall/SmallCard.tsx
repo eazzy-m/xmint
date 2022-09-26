@@ -1,10 +1,10 @@
 
-import "./SmallCard.scss";
 import {useNavigate} from "react-router-dom";
 import Countdown from "../countdown/countdown";
 
+import "./SmallCard.scss";
 
-const SmallCard = (props: {image: string, releaseDatetime: string, title: string, backStyle: boolean, id: string}) => {
+const SmallCard = (props: {image: string, releaseDatetime: string, title: string, backStyle: boolean, id: string, queueNumber: number}) => {
     const {image, releaseDatetime, title, backStyle, id} = props;
     const navigate = useNavigate();
     
@@ -16,11 +16,11 @@ const SmallCard = (props: {image: string, releaseDatetime: string, title: string
                 <button className={`card__link 
                 ${backStyle 
                     ?
-                     "card__link_dark-background" 
-                     : 
-                     "card__link_light-background"}`} 
-                     onClick={() => {navigate("/learn-more", {state: id})}}
-                     >Learn more &rsaquo;</button>
+                    "card__link_dark-background" 
+                    : 
+                    "card__link_light-background"}`} 
+                    onClick={() => {navigate("/learn-more", {state: id})}}
+                    >Learn more &rsaquo;</button>
             </div>
             <img src={image} alt={title} className={"card__image"}/>
 

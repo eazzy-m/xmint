@@ -1,7 +1,6 @@
 import { IMoments } from "./IMoments";
 
 export interface ICard {
-    brands?: [];
     drop_banner: string;
     id: string;
     is_released: boolean;
@@ -12,5 +11,6 @@ export interface ICard {
     price: number;
     release_datetime: string;
     title: string;
+    brands?: [];
     moments?: IMoments[];
 }

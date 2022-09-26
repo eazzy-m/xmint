@@ -1,30 +1,34 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { token } from "../../redux/store"
+import { getCards } from "../../api/api";
+import { ICard } from "../../interfaces/ICard";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import SmallCard from "../CardSmall/SmallCard";
-import {getCards} from "../../api/api";
-import {ICard} from "../../interfaces/ICard";
+import defaultImage from "../../assets/default-image/XMint1_Pack_Logo_001.png";
+ 
 import "./SmallCardsList.scss";
-import { useSelector, useDispatch } from 'react-redux';
-import { token } from "../../redux/store"
-import { useNavigate } from 'react-router';
-import { signOutReducer } from '../../redux/slice/auth';
 
 const SmallCardsList = () => {
-    const [cards, setCards] = useState<ICard[]>([]);
-    const [error, setError] = useState();
+    const [cards, setCards] = useState<ICard[]>([] as ICard[]);
     const [style, setStyle] = useState<boolean[]>([]);
     const [offset, setOffset] = useState(6);
     const [hasMore, setHasMore] = useState(true);
     const storeToken = useSelector(token);
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    
-    const logout = () => {
-        localStorage.clear();
-        dispatch(signOutReducer());
-        navigate("/sign-in");
+    const filler = {
+        drop_banner: defaultImage,
+        id: Date.now() + '',
+        is_released: true,
+        is_sold_out: true,
+        marketplace_banner: '',
+        number: 0,
+        pack_artwork: '',
+        price: 0,
+        release_datetime: '',
+        title: '',
     };
+    
     const backgroundPainter = () => {
         const arr = [[1, 2], [3, 4], [5, 6], [7, 8], [9, 10], [11, 12], [13, 14], [15, 16]];
         const booleansArr = [];
@@ -44,16 +48,8 @@ const SmallCardsList = () => {
         backgroundPainter();
         getCards(5, 1, storeToken)
             .then(res => setCards(res.data.results))
-            .catch(err => {
-                setError(err);
-                logout();
-            });
+            .catch(() => setCards([filler]));
     }, []);
-
-    const errorHandler = (): boolean => {
-        //@ts-ignore
-        return error && Object.keys(error?.response?.data);
-    };
 
     const fetch = async () => {
         const res = await getCards(4, offset, storeToken);
@@ -83,11 +79,10 @@ const SmallCardsList = () => {
                                    id={card.id}
                                    releaseDatetime={card.release_datetime}
                                    backStyle={style[index]}
+                                   queueNumber={index + 1}
                         />
                     ))}
                 </div>
-                {errorHandler() && //@ts-ignore
-                    <span className="error-message">{error?.response?.data}</span>}
             </InfiniteScroll>
     );
 };

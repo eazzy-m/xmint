@@ -27,6 +27,11 @@
   list-style: none;
   text-decoration: none;
   width: 180px;
+  transition: color .3 ease-in-out;
+
+  &:hover {
+    color: $grey-color;
+  }
 }
 
 .footer__text_description {
@@ -60,4 +65,25 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: $grey-color;
+}
+
+@media screen and (max-width: 900px) {
+  
+  .footer {
+    flex-direction: column;
+  }
+
+  .footer__nav-lists {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .footer__copyright {
+    margin: 32px 0 8px;
+  }
+
+  .footer__text_description {
+    line-height: 20px;
+    margin-bottom: 16px;
+  }
 }

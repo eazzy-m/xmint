@@ -179,3 +179,9 @@
   margin-top: 5px;
   color: red;
 }
+
+@media screen and (max-width: 900px) {
+  .page {
+    width: calc(100vw);
+  }
+}

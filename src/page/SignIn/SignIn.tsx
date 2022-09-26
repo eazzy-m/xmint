@@ -84,7 +84,7 @@ const SignIn:FC = () => {
     const showPassword: MouseEventHandler = (): void => {
         setType(!type);
     };
-
+    
     return (
         <>
         <div className="page">
@@ -128,7 +128,9 @@ const SignIn:FC = () => {
                 </p>
             </div>
         </div>
+        {window.innerWidth > 900 &&
             <Slider slides={imageArray}/>
+        }
         </>
     );
 };

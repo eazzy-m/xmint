@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { Avatar, Button, TextField } from '@mui/material';
 import { useSelector,useDispatch } from 'react-redux';
 import { fillUsersData } from '../../../redux/slice/user';
@@ -28,7 +28,7 @@ const TabComponentWithForm = () => {
     const userEmail = useSelector(email);
     const userId = useSelector(id);
     const storeToken = useSelector(token);
-/////////////
+
     const initialData: IUpdateUserData = {
         about: userAbout || '',
         username: UserName,
@@ -40,8 +40,6 @@ const TabComponentWithForm = () => {
     const [flag, setFlag] = useState<boolean>(true);
 
     useEffect(() => {
-        console.log('rerender');
-        
         const isEqual = _.isEqual(initialData, data);
         setFlag(isEqual);
     });
@@ -53,7 +51,6 @@ const TabComponentWithForm = () => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        console.log("after submit", flag);
         updateUser(data, userId, storeToken)
             .then(res => {
                 localStorage.setItem('userData', JSON.stringify(res.data))
