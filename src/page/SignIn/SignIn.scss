@@ -1,78 +1,188 @@
+@import "../../constants/styleConstants";
+
 .page {
   height: calc(100vh - 96px);
   width: calc(100vw - 588px);
-  border: 1px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .sign-in-container {
+  .container {
+    margin-bottom: 130px;
     display: flex;
     flex-direction: column;
   }
 
   .container__title {
     width: 432px;
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 500;
+    @include font500;
     font-size: 34px;
     line-height: 40px;
     padding: 0;
-    margin-bottom: 17px;
   }
 
   .form {
+    width: 432px;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
 
-  .form__input{
-    width: 432px;
+  .custom-field {
+    display: flex;
+    flex-direction: column;
+    @include font400;
+    font-size: 16px;
+    line-height: 20px;
+    position: relative;
+    padding-top: 20px;
+
+    .form__input {
+      padding: 16px 14px;
+      width: 432px;
+      height: 48px;
+      border-radius: 6px;
+      border: 1px solid $border-color;
+      color: black;
+      outline: none;
+      appearance: none;
+
+        &:hover, &:focus-within {
+          border-color: $dark-color;
+        }
+    }
+
+    .placeholder {
+      position: absolute;
+      left: 15px;
+      top: calc(50% - 1px);
+      transform: translateY(10%);
+      @include font400;
+      font-size: 16px;
+      line-height: 20px;
+      color: $border-color;
+      transition: all .2s ease;
+    }
+
+    .form__input:valid + .placeholder,
+    .form__input:focus-within + .placeholder {
+      padding: 0 5px;
+      left: 8px;
+      top: 6px;
+      color: $dark-color;
+      font-size: 13px;
+      line-height: 16px;
+      background-color: $light-color;
+    }
+  }
+
+
+
+  .form__input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1px solid $border-color;
+
+    &[type="checkbox"]:checked:before {
+      content: ' \2714';
+      text-align: center;
+      color: $light-color;
+      display: block;
+      width: 18px;
+      height: 18px;
+      background-color: $dark-color;
+      position: relative;
+      border-radius: 4px;
+    }
+  }
+
+  .button {
+    @include font500;
+    color: $light-color;
+    font-size: 16px;
+    line-height: 20px;
     height: 48px;
     border-radius: 6px;
-    margin-bottom: 24px;
+    text-transform: none;
+    cursor: pointer;
+    background-color: $button-color;
+    &:hover {
+      background-color: $button-hover-color;
+    }
   }
 
-  .form__input_type_checkbox {
-    width: 22px;
-    height: 22px;
-    margin: 0 auto;
+  .button_small {
+    width: 125px;
+    height: 40px;
+    padding: 11px 16px;
   }
 
-  .form__submit-button {
+  .button_submit {
     width: 432px;
-    height: 48px;
+    padding: 14px 180px;
   }
 
   .form__link {
-
+    @include font400;
+    font-size: 14px;
+    line-height: 18px;
+    color: $dark-color;
+    text-decoration-color: $border-color;
   }
 
   .form__paragraph {
-
+    margin-top: 20px;
+    @include font400;
+    font-size: 14px;
+    line-height: 18px;
+    color: $grey-color;
   }
 
   .form__wrapper {
+    width: 100%;
     display: flex;
-    justify-content: center;
-    margin-top: -30px;
-    margin-bottom: 5px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px auto 28px;
   }
 
   .input__button {
-      position: relative;
-      width: 30px;
-      height: 30px;
-      border: none;
-      background-color: inherit;
-      left: 380px;
-      bottom: 62px;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    right: 13px;
+    top: 98px;
   }
 
   .input__label {
+    display: flex;
+    align-items: center;
+  }
+
+  .checkbox-label {
     text-align: center;
-    margin-bottom: 3px;
+    margin-left: 8px;
+    @include font400;
+    font-size: 14px;
+    line-height: 18px;
   }
 }
 
+.error-message {
+  @include font400;
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 5px;
+  color: red;
+}
+
+@media screen and (max-width: $tablet) {
+  .page {
+    width: calc(100vw);
+    align-items: baseline;
+  }
+}

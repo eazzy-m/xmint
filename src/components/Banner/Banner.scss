@@ -1,0 +1,13 @@
+.banner {
+  width: 100%;
+  height: 560px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.banner__image {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+}

@@ -1,0 +1,69 @@
+@import "../../constants/styleConstants";
+
+.countdown {
+  position: relative;
+  width: 240px;
+  height: 60px;
+  margin: 29px 0 24px ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .countdown__fragment {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .countdown__number {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 40px;
+    color: $dark-color;
+    text-align: center;
+  }
+
+  .number-description {
+    @include font400;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: $grey-color;
+  }
+  .release {
+    position: absolute;
+    width: 336px;
+    @include font400;
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+.countdown_light-mode {
+  .countdown__number, .release {
+    color: $dark-color;
+  }
+
+  .number-description {
+    color: $grey-color;
+  }
+}
+
+.countdown_dark-mode {
+  .countdown__number, .release {
+    color: $light-color;
+  }
+
+  .number-description {
+    color: $light-color;
+    opacity: 0.56;
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  .countdown .release{
+    margin-left: -10px;
+  }
+}

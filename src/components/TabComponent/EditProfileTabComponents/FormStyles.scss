@@ -1,0 +1,66 @@
+@import "../../../constants/styleConstants";
+
+.form-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 23px;
+    left: 390px;
+}
+
+.update-avatar {
+    width: 220px;
+    margin: 24px 0 39px;
+    display: flex;
+    align-items: center;
+}
+
+.user-logo-wrapper {
+    margin-right: 20px;
+}
+
+.form-title {
+    @include font500;
+    font-size: 34px;
+    line-height: 40px;
+}
+
+.patch-button-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    @include font500;
+    font-size: 20px;
+    line-height: 28px;
+    color: $dark-color;
+    margin-bottom: 12px;
+}
+
+.form-wrapper {
+    width: 672px;
+}
+
+@media screen and (max-width: $tablet) {
+    .form-container {
+        position: static;
+        justify-content: center;
+        align-items: center;
+    }
+    .form-wrapper {
+        width: 100%;
+    }
+    .form-wrapper > form {
+       display: flex;
+       flex-direction: column;
+       row-gap: 24px;
+    }
+    .update-avatar {
+        align-self: baseline;
+    }
+    
+    .form-title {
+        align-self: baseline;
+    }
+}

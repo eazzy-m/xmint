@@ -4,23 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="778ccc03-b1c0-460f-89c7-4c95cb77cdcb" name="Changes" comment="init commit">
-      <change afterPath="$PROJECT_DIR$/src/assets/logo/Logo-Xmint-black 3.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/slider/SURFING, Kissed by God Andy Irons _V1 1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/Header/Header.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/Header/Header.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/SignIn/SignIn.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/SignIn/SignIn.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/Slider/Slider.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/page/Slider/Slider.tsx" afterDir="false" />
+    <list default="true" id="778ccc03-b1c0-460f-89c7-4c95cb77cdcb" name="Changes" comment="add style constants file, implemented mixins and scss variables">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/SignIn.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/page/SignIn.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FormInput/FormInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FormInput/FormInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SubmitButton/SubmitButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SubmitButton/SubmitButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/styleConstants.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/styleConstants.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +18,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="SCSS File" />
+        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="SCSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -52,6 +46,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mikalai Kozich/WebstormProjects/xmint&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -63,10 +58,19 @@
   }
 }</component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mikalai Kozich\WebstormProjects\xmint\src\assets\ring" />
+      <recent name="C:\Users\Mikalai Kozich\WebstormProjects\xmint\src\assets\wallet" />
+      <recent name="C:\Users\Mikalai Kozich\WebstormProjects\xmint\src\assets" />
+      <recent name="C:\Users\Mikalai Kozich\WebstormProjects\xmint\src\assets\partnership" />
       <recent name="C:\Users\Mikalai Kozich\WebstormProjects\xmint\src\assets\slider" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Mikalai Kozich\WebstormProjects\xmint\src\assets\logo" />
-      <recent name="C:\Users\Mikalai Kozich\WebstormProjects\xmint\src\page\SignIn" />
+      <recent name="C:\Users\Mikalai Kozich\WebstormProjects\xmint\src\assets\user" />
+      <recent name="C:\Users\Mikalai Kozich\WebstormProjects\xmint\src\external" />
+      <recent name="C:\Users\Mikalai Kozich\WebstormProjects\xmint\src\components\SubmitButton" />
+      <recent name="C:\Users\Mikalai Kozich\WebstormProjects\xmint\src\assets\slider" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -79,7 +83,19 @@
       <updated>1661511103309</updated>
       <workItem from="1661511104430" duration="33000" />
       <workItem from="1661511143931" duration="1046000" />
-      <workItem from="1661512209191" duration="7715000" />
+      <workItem from="1661512209191" duration="8541000" />
+      <workItem from="1661684733628" duration="52062000" />
+      <workItem from="1661839757115" duration="21377000" />
+      <workItem from="1661926455338" duration="1474000" />
+      <workItem from="1661937489605" duration="13000" />
+      <workItem from="1661944710369" duration="762000" />
+      <workItem from="1661952425166" duration="649000" />
+      <workItem from="1662052355599" duration="259000" />
+      <workItem from="1662117986356" duration="7112000" />
+      <workItem from="1662359066665" duration="73331000" />
+      <workItem from="1662704057943" duration="596000" />
+      <workItem from="1662705873895" duration="14000" />
+      <workItem from="1662968320872" duration="9000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1661511945034</created>
@@ -95,7 +111,49 @@
       <option name="project" value="LOCAL" />
       <updated>1661512058856</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added header, rude structure for form">
+      <created>1661521148718</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1661521148718</updated>
+    </task>
+    <task id="LOCAL-00004" summary="styled form, added api to signIn, slider">
+      <created>1661775456206</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1661775456206</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fixed cors error/ added form validation, redux storage for the auth state">
+      <created>1662378507438</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1662378507438</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added main page/footer/header, fetch cards, banner. user mail save in the store">
+      <created>1662474408423</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1662474408423</updated>
+    </task>
+    <task id="LOCAL-00007" summary="implemented infinite scroll, countdown and release date">
+      <created>1662553919943</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1662553919943</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add style constants file, implemented mixins and scss variables">
+      <created>1662560729364</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1662560729364</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +172,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="init commit" />
+    <MESSAGE value="added header, rude structure for form" />
+    <MESSAGE value="styled form, added api to signIn, slider" />
+    <MESSAGE value="fixed cors error/ added form validation, redux storage for the auth state" />
+    <MESSAGE value="added main page/footer/header, fetch cards, banner. user mail save in the store" />
+    <MESSAGE value="implemented infinite scroll, countdown and release date" />
+    <MESSAGE value="add style constants file, implemented mixins and scss variables" />
+    <option name="LAST_COMMIT_MESSAGE" value="add style constants file, implemented mixins and scss variables" />
   </component>
 </project>
