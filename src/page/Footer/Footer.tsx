@@ -1,10 +1,11 @@
 
-import "./Footer.scss";
-import logo from "../../assets/logo/Logo-Xmint-black 4.svg";
-import FooterUL from "../../components/FooterUL/FooterUL";
 import { useState, useEffect } from "react";
 import {companyList, helpList, marketplaceList, followUsList} from "../../constants/FooterConstants/constants";
 import FooterAccordeon from "../../components/FooterAccordeon/FooterAccordeon";
+import logo from "../../assets/logo/Logo-Xmint-black 4.svg";
+import FooterUL from "../../components/FooterUL/FooterUL";
+
+import "./Footer.scss";
 
 const Footer = () => {
 

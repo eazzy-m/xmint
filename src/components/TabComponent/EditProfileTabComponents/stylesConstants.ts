@@ -15,17 +15,17 @@ export const ButtonStyle = {
     };
 
 export const DisabledInputStyle = {
-        width: "670px",
+        width: "100%",
         background: "#F2F2F3",
         borderRadius: "6px",
-        margin: "24px 0 25px",
+        margin: window.innerWidth > 900 ? "24px 0 25px" : "0",
         "&::placeholder": {
-            backgroundColor: "#fff"
+            backgroundColor: "#FFF"
         }
     };
 
 export const SmalldInputStyle = {
-        width: "323px",
+        width: window.innerWidth > 900 ? "323px" : "100%",
         background: "#FFF",
         borderRadius: "6px",
         "&:first-of-type": {
@@ -34,7 +34,7 @@ export const SmalldInputStyle = {
     };
 
 export const BigInputStyle = {
-        width: "670px",
+        width: "100%",
         background: "#FFF",
         borderRadius: "6px",
         marginBottom: "32px"
@@ -71,3 +71,9 @@ export const SubmitButtonStyle = {
         color: "#FFF !important",
         textTransform: 'none',
     };
+export const DisabledSubmitButtonStyle = {
+    ...SubmitButtonStyle,
+    backgroundColor: "#B5D2DE !important",
+}
+
+export const AvatarStyle = { width: 80, height: 80};

@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import { useSelector} from 'react-redux';
-import { getBanner } from "../../api/api";
+import { getBanner } from "../../api/getCards";
 import { token } from "../../redux/store"
 import defaultImage from "../../assets/default-image/XMint1_Pack_Logo_001.png";
 

@@ -1,0 +1,44 @@
+@import "./styleConstants";
+
+.css-9advfc-MuiButtonBase-root-MuiButton-root {
+    padding: 0 !important;
+}
+
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
+    padding: 0px 6px !important;
+    border-radius: 4px !important;
+    margin-left: -4px !important;
+    background: $light-color !important;
+}
+
+span .MuiTabs-indicator .css-10d9dml-MuiTabs-indicator {
+    background-color: $light-color !important;
+}
+.css-10d9dml-MuiTabs-indicator {
+    background-color: $light-color !important;
+}
+
+.css-5jv5vp-MuiButtonBase-root-MuiTab-root {
+    min-height: 0 !important;
+    justify-content: flex-start !important;
+}
+
+.css-hboir5 {
+    height: 80vh;
+}
+
+// datk line under tabs title
+span .MuiTabs-indicator, .css-1aquho2-MuiTabs-indicator {
+    background-color: $dark-color !important;
+}
+
+// small version of tabs title
+@media screen and (max-width: $tablet) {
+    .css-1khs6h9-MuiButtonBase-root-MuiTab-root {
+        min-height: 50px !important;
+    }
+    // paddings around tabComponent
+    .css-19kzrtu {
+        padding: 24px 0;
+    }
+}

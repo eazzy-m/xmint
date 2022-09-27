@@ -6,67 +6,71 @@ import search from "../../assets/search/search-svgrepo-com.svg";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, FC, MouseEvent } from "react";
 import { useNavigate } from "react-router";
-import { isAuth, userName, logo } from "../../redux/store";
+import { isAuth, userdata, isModalOpen } from "../../redux/store";
+import { signOutReducer } from "../../redux/slice/auth";
+import { openModal, closeModal } from "../../redux/slice/headerModal";
 import { Menu, MenuItem, Avatar, IconButton, ListItemIcon, Button, ButtonGroup } from "@mui/material";
 import { KeyboardArrowDown, KeyboardArrowUp, Logout, BookmarkBorderOutlined, AccountCircleOutlined } from "@mui/icons-material";
-import DehazeIcon from '@mui/icons-material/Dehaze';
-import { signOutReducer } from "../../redux/slice/auth";
-import {avatarMenuStyles, avatarStyles, burgerButtonStyles, buttonStyles, marketplaceMenuStyles} from "./HederStyleConstants";
 import ClearIcon from '@mui/icons-material/Clear';
-import { isModalOpen } from "../../redux/store";
-import { openModal, closeModal } from "../../redux/slice/headerModal";
-import "./Header.scss";
-import "./HeaderMainPage.scss";
+import DehazeIcon from '@mui/icons-material/Dehaze';
+import { avatarMenuStyles, avatarStyles, burgerButtonStyles, buttonStyles, marketplaceMenuStyles } from "./HederStyleConstants";
 import HeaderDropdown from "../../components/HeaderDropdown/HeaderDropdown";
 
-const Header:FC = () => {
+import "./Header.scss";
+import "./HeaderMainPage.scss";
 
+const Header:FC = () => {
     const [anchorMarketplaceEl, setAncorMarketplaceEl] = useState<null | HTMLElement>(null);
     const [anchorAvatarEl, setAnchorAvatarEl] = useState<null | HTMLElement>(null);
     const openMArketplace = Boolean(anchorMarketplaceEl);
     const openAvatar = Boolean(anchorAvatarEl);
     const auth = useSelector(isAuth);
-    const UserName = useSelector(userName);
-    const userLogo = useSelector(logo);
+    const user = useSelector(userdata);
+    const { logo, username } = user;
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const modal = useSelector(isModalOpen);
 
-    const logout = () => {
+    const logout = (): void => {
         localStorage.clear();
+        dispatch(closeModal());
         dispatch(signOutReducer());
         navigate("/sign-in");
     };
 
-    const avatarFiller = (): string => {
-         return UserName ? UserName[0].toUpperCase() : "!";
-    };
+    const avatarFiller = (): string => username ? username[0].toUpperCase() : "!";
 
-    const handleMarketplaceClick = (evt: React.MouseEvent<HTMLButtonElement>) => {
+    const handleMarketplaceClick = (evt: React.MouseEvent<HTMLButtonElement>): void => {
         setAncorMarketplaceEl(evt.currentTarget);
     };
 
-    const handleAvatarClick = (evt: MouseEvent<HTMLButtonElement>) => {
+    const handleAvatarClick = (evt: MouseEvent<HTMLButtonElement>): void => {
         setAnchorAvatarEl(evt.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleClose = (): void => {
         setAncorMarketplaceEl(null);
         setAnchorAvatarEl(null);
     };
 
-    const toggleModalHeader = () => {
+    const toggleModalHeader = (): void => {
         modal ? dispatch(closeModal()) : dispatch(openModal());
+    };
+
+    const navigateHandler = (): void => {
+        navigate('/profile');
+    };
+
+    const navigateAndCloseModalHandler = (): void => {
+        dispatch(closeModal());
+        navigate("/")
     };
 
     return (
         auth
             ?
             <div className={"header_main-page"}>
-                <img alt="logo" src={xMintlogo} className="header__logo" onClick={() => {
-                    dispatch(closeModal())
-                    navigate("/")
-                    }}/>
+                <img alt="logo" src={xMintlogo} className="header__logo" onClick={navigateAndCloseModalHandler}/>
                 <div className="header__input-wrapper">
                     <img src={search} alt='search' className="search"/>
                     <input className="header__input" type="text" placeholder="Search by creator, athlete or sport"/>
@@ -109,14 +113,8 @@ const Header:FC = () => {
                                 <img src={wallet} alt="wallet icon" className={"header__image"}/>
                             </>
                         }
-
                         <IconButton sx={burgerButtonStyles} onClick={toggleModalHeader}>
-                            {modal 
-                            ?
-                            <ClearIcon/>
-                            :
-                            <DehazeIcon/>
-                            }
+                            {modal ? <ClearIcon/> : <DehazeIcon/>}
                         </IconButton>
                         {modal && <HeaderDropdown/>}
                     </ButtonGroup>
@@ -128,8 +126,8 @@ const Header:FC = () => {
                             aria-haspopup="true"
                             aria-expanded={openAvatar ? 'true' : undefined}
                             >
-                        {userLogo ? 
-                        <Avatar  src={userLogo} sx={avatarStyles}/> 
+                        {logo ? 
+                        <Avatar src={logo} sx={avatarStyles}/> 
                         : 
                         <Avatar sx={avatarStyles}>{avatarFiller()}</Avatar>}
                         
@@ -147,7 +145,7 @@ const Header:FC = () => {
                         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                     >
-                        <MenuItem onClick={() => {navigate("/profile")}}>
+                        <MenuItem onClick={navigateHandler}>
                             <ListItemIcon>
                                 <AccountCircleOutlined/>
                             </ListItemIcon>
@@ -159,14 +157,13 @@ const Header:FC = () => {
                             </ListItemIcon>
                             Saved
                         </MenuItem>
-                        <MenuItem onClick={() => {logout()}}>
+                        <MenuItem onClick={logout}>
                             <ListItemIcon>
                                 <Logout />
                             </ListItemIcon>
                             Logout
                         </MenuItem>
                     </Menu>
- 
                 </div>
             </div>
             :

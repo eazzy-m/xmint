@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
+import { getCardById } from '../../api/getCards';
+import { ICard } from '../../interfaces/ICard';
+import { useLocation } from 'react-router';
+import { useSelector } from 'react-redux';
+import { token } from "../../redux/store"
+import Countdown from '../../components/countdown/countdown';
+import MembershipWindow from '../../components/MembershipWindow/MembershipWindow';
 import Banner from '../../components/Banner/Banner';
 import BrandsList from '../../components/BrandsList/BrandsList';
 import Description from '../../components/Description/Description';
 import Footer from '../Footer/Footer';
-import { getCardById } from '../../api/api';
-import { ICard } from '../../interfaces/ICard';
-import Countdown from '../../components/countdown/countdown';
+
 import "./LearnMore.scss";
-import MembershipWindow from '../../components/MembershipWindow/MembershipWindow';
-import { useLocation } from 'react-router';
-import { useSelector } from 'react-redux';
-import { token } from "../../redux/store"
+
 const LearnMore = () => {
 
   const [card, setCard] = useState<ICard>();

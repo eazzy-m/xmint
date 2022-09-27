@@ -1,13 +1,4 @@
 @import "../../../constants/styleConstants";
-.css-9advfc-MuiButtonBase-root-MuiButton-root {
-    padding: 0 !important;
-}
-.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
-    padding: 0px 6px !important;
-    border-radius: 4px !important;
-    margin-left: -4px !important;
-    background: #fff !important;
-}
 
 .form-container {
     position: absolute;
@@ -49,4 +40,27 @@
 
 .form-wrapper {
     width: 672px;
+}
+
+@media screen and (max-width: $tablet) {
+    .form-container {
+        position: static;
+        justify-content: center;
+        align-items: center;
+    }
+    .form-wrapper {
+        width: 100%;
+    }
+    .form-wrapper > form {
+       display: flex;
+       flex-direction: column;
+       row-gap: 24px;
+    }
+    .update-avatar {
+        align-self: baseline;
+    }
+    
+    .form-title {
+        align-self: baseline;
+    }
 }

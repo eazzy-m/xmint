@@ -20,6 +20,28 @@ interface TabPanelProps {
   value: number;
 }
 
+const style = {
+  width: window.innerWidth > 900 ? "210px" : "113px",
+  height: window.innerWidth > 900 ? "40px" : "28px",
+  textTransform: "none",
+  fontFamily: 'Roboto',
+  fontStyle: "normal",
+  fontWeight: 500,
+  fontSize: "14px",
+  lineHeight: "18px",
+  color: "#7D8081",
+  padding: window.innerWidth > 900 ? "10px 16px" : 0,
+  '&.Mui-selected': {
+      color: '#458FAC',
+      background: "#F2F2F3",
+      borderRadius: "6px"
+},
+ }
+
+ const imageStyle = {
+    display: window.innerWidth > 900 ? "inline" : "none"
+ }
+
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
@@ -52,46 +74,27 @@ export default function BasicTabs() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
-  const logout = () => {
+  const logout = (): void => {
       localStorage.clear();
       dispatch(signOutReducer());
       navigate("/sign-in");
   };
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: number): void => {
     setValue(newValue);
   };
 
-  const style = {
-    width: "210px",
-    height: "40px",
-    textTransform: "none",
-    fontFamily: 'Roboto',
-    fontStyle: "normal",
-    fontWeight: 500,
-    fontSize: "14px",
-    lineHeight: "18px",
-    color: "#7D8081",
-    padding: "10px 16px",
-    '&.Mui-selected': {
-        color: '#458FAC',
-        background: "#F2F2F3",
-        borderRadius: "6px"
-  },
-   }
-
   return (
-    <Box sx={{ display: 'flex', width: "100%" }}>
-      
+    <Box sx={{ display: 'flex', width: "100%", flexDirection: `${window.innerWidth > 900 ? "row" : "column"}`, columnGap: `${window.innerWidth > 900 ? "0" : "24px"}`}}>
         <Tabs value={value}
          onChange={handleChange}
           aria-label="Vertical tabs example" 
-          orientation="vertical">
-          <Tab sx={style} icon={<EditIcon />} iconPosition="start" label="Edit profile" {...a11yProps(0)} />
-          <Tab sx={style} icon={<KeyIcon />} iconPosition="start" label="Change password" {...a11yProps(1)} />
-          <Tab sx={style} icon={<VerifiedUserOutlinedIcon />} iconPosition="start" label="Security" {...a11yProps(2)} />
-          <Tab sx={style} icon={<LogoutIcon />} iconPosition="start" label="Sign out" {...a11yProps(3)} 
-           onClick={() => {logout()}}
+          orientation={`${window.innerWidth > 900 ? "vertical" : "horizontal"}`}>
+          <Tab sx={style} icon={ <EditIcon sx={imageStyle}/>} iconPosition="start" label="Edit profile" {...a11yProps(0)} />
+          <Tab sx={style} icon={<KeyIcon sx={imageStyle}/>} iconPosition="start" label="Change password" {...a11yProps(1)} />
+          <Tab sx={style} icon={<VerifiedUserOutlinedIcon sx={imageStyle}/>} iconPosition="start" label="Security" {...a11yProps(2)} />
+          <Tab sx={style} icon={<LogoutIcon sx={imageStyle}/>} iconPosition="start" label="Sign out" {...a11yProps(3)} 
+           onClick={logout}
            />
         </Tabs>
 

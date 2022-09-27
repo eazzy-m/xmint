@@ -1,3 +1,5 @@
+@import "../../constants/styleConstants";
+
 .main-page {
   position: relative;
   display: flex;
@@ -13,4 +15,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+@media screen and (max-width: $tablet) {
+  .main-page {
+    padding: 20px 16px 64px;
+  }
 }

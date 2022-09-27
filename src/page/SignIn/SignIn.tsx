@@ -62,7 +62,7 @@ const SignIn:FC = () => {
                 localStorage.setItem('accessToken', res.data.access);
                 return res.data;
             })
-            .then((res) => {
+            .then(res => {
                 getUser(res.id, res.access)
                     .then((userData) => {
                         localStorage.setItem('userData', JSON.stringify(userData.data));
@@ -70,9 +70,9 @@ const SignIn:FC = () => {
                         dispatch(signInReducer(res.access)); 
                         navigate("/");
                     })
-                    .catch((err) => setError(err));
+                    .catch(err => setError(err));
             })
-            .catch((err) => setError(err));
+            .catch(err => setError(err));
         setData(initialData);
     };
 
@@ -128,9 +128,7 @@ const SignIn:FC = () => {
                 </p>
             </div>
         </div>
-        {window.innerWidth > 900 &&
-            <Slider slides={imageArray}/>
-        }
+        {window.innerWidth > 900 && <Slider slides={imageArray}/>}
         </>
     );
 };

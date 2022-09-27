@@ -1,7 +1,8 @@
 import {useEffect, useState} from 'react';
 import moment from "moment/moment";
 import { Typography } from '@mui/material';
-import "./Countdown.scss"
+
+import "./Countdown.scss";
 
 const Countdown = (props: {mode: boolean, releaseDate: string | undefined}) => {
     const {releaseDate, mode} = props;

@@ -44,8 +44,21 @@
   color: $dark-color;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: $tablet) {
   .header {
     width: calc(100vw);
+    height: 66px;
+  }
+  .header__container {
+    flex-direction: column-reverse;
+    width: 150px;
+    margin-top: 12px;
+    margin-right: 16px;
+    row-gap: 4px;
+  }
+  .header__logo {
+    margin-left: 16px;
+    width: 89px;
+    height: 20px;
   }
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { token } from "../../redux/store";
-import { getFirst } from "../../api/api";
+import { getFirst } from "../../api/getCards";
 import { ICard } from "../../interfaces/ICard";
 import defaultImage from "../../assets/default-image/XMint1_Pack_Logo_001.png"
 import Countdown from "../countdown/countdown";
@@ -35,6 +35,10 @@ const MainCard = () => {
             .catch(() => setCard(filler));
     }, []);
 
+    const navigateHandler = () => {
+        navigate("/learn-more", {state: card?.id});
+    };
+
     return (
 
         <div className={"main-card"}>
@@ -44,7 +48,7 @@ const MainCard = () => {
                 <div className={"card__interface"}>
                     <button className={"button button_small"}>Pre-Order Now</button>
                     <button className={"card__link card__link_light-background"}
-                    onClick={() => {navigate("/learn-more", {state: card?.id})}}
+                    onClick={navigateHandler}
                     >Learn more &rsaquo;</button>
                 </div>
             </div>
