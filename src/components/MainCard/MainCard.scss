@@ -97,10 +97,11 @@
 .main-card__image-banner {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: $tablet) {
   .main-card {
     width: 100%;
     min-height: 560px;
@@ -128,7 +129,7 @@
   }
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: calc($mobile + 190px)) {
   .main-card__title {
     @include font500;
     color: $dark-color;

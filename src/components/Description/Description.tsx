@@ -41,8 +41,7 @@ const Description = (props: {card: ICard | undefined, error: boolean}) => {
                 <Countdown releaseDate={card?.release_datetime} mode={true}/>
                 <button className={"button button_big"}>Pre-Order Now</button>
             </div>
-            {error && //@ts-ignore
-                    <Typography className="error-message">Something goes wrong...</Typography>}
+            {error && <Typography className="error-message">Something goes wrong...</Typography>}
         </div>
 
     </div>

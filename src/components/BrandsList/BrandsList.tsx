@@ -18,7 +18,7 @@ const {moments, cardNumber} = props;
             )}
         </div>
     </div>
-  )
-}
+  );
+};
 
 export default BrandsList;

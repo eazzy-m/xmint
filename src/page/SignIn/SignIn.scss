@@ -87,7 +87,7 @@
     &[type="checkbox"]:checked:before {
       content: ' \2714';
       text-align: center;
-      color: white;
+      color: $light-color;
       display: block;
       width: 18px;
       height: 18px;
@@ -180,8 +180,9 @@
   color: red;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: $tablet) {
   .page {
     width: calc(100vw);
+    align-items: baseline;
   }
 }

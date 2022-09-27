@@ -1,3 +1,5 @@
+@import "../../constants/styleConstants";
+
 .small-card {
   display: flex;
   flex-direction: column;
@@ -9,9 +11,10 @@
   width: 252px;
   height: 344px;
   margin: 48px auto 56px;
+  object-fit: cover;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: $tablet) {
   .small-card {
     width: 100%;
     display: flex;

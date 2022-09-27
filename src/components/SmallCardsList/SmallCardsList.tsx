@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { token } from "../../redux/store"
-import { getCards } from "../../api/api";
+import { getCards } from "../../api/getCards";
 import { ICard } from "../../interfaces/ICard";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import SmallCard from "../CardSmall/SmallCard";
@@ -34,11 +34,21 @@ const SmallCardsList = () => {
         const booleansArr = [];
         for (let i = 0; i < arr.length; i++) {
             if (i % 2 === 0) {
-                booleansArr.push(true);
-                booleansArr.push(true);
+                if (window.innerWidth > 900) {
+                    booleansArr.push(true);
+                    booleansArr.push(true);
+                }
+                else {
+                    booleansArr.push(true);
+                }
             } else {
-                booleansArr.push(false);
-                booleansArr.push(false);
+                if (window.innerWidth > 900) {
+                    booleansArr.push(false);
+                    booleansArr.push(false);
+                }
+                else {
+                    booleansArr.push(false);
+                }  
             }
         }
         setStyle(booleansArr);

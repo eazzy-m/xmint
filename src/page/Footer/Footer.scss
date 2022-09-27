@@ -67,7 +67,7 @@
   color: $grey-color;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: $tablet) {
   
   .footer {
     flex-direction: column;

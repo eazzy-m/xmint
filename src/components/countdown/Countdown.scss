@@ -41,7 +41,6 @@
   }
 }
 
-
 .countdown_light-mode {
   .countdown__number, .release {
     color: $dark-color;
@@ -61,13 +60,9 @@
     color: $light-color;
     opacity: 0.56;
   }
-
-  .release {
-
-  }
 }
 
-@media screen and (max-width: 500) {
+@media screen and (max-width: $mobile) {
   .countdown .release{
     margin-left: -10px;
   }

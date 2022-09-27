@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import search from "../../assets/search/search-svgrepo-com.svg";
 import MuiAccordion, { AccordionProps } from '@mui/material/Accordion';
 import { styled } from '@mui/material/styles';
@@ -10,11 +10,15 @@ import ClearIcon from '@mui/icons-material/Clear';
 import Divider from '@mui/material/Divider';
 import {avatarStyles, buttonStyles, buttonStylesColored} from "../../page/Header/HederStyleConstants";
 import { useDispatch, useSelector } from 'react-redux';
-import { logo, userName } from '../../redux/store';
+import { userdata, token } from '../../redux/store';
 import { Avatar, IconButton } from "@mui/material";
 import { useNavigate } from 'react-router';
 import { signOutReducer } from '../../redux/slice/auth';
 import { closeModal } from '../../redux/slice/headerModal';
+import { getSportTypes } from '../../api/getSprotTypes';
+import { colors } from '../../constants/inlineConstants';
+
+const { greyColor, buttonColor } = colors;
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -26,7 +30,7 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary {...props} />
 ))(() => ({
   backgroundColor:"inherit",
-  color: "#7D8081",
+  color: greyColor,
   textTransform: "uppercase"
 }));
 
@@ -34,26 +38,31 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
 }));
 
-
 const HeaderDropdown = () => {
-
   const [listOfPanels, setListOfPanels] = useState<string[]>(['panel1']);
-  const UserName = useSelector(userName);
-  const userLogo = useSelector(logo);
+  const [sportTypes, setSportTypes] = useState([{name: 'All Moments'}, {name: 'New'}, {name: 'Surfing'}, {name: 'Skateboarding'}, {name: 'Motocross'}]);
+  const user = useSelector(userdata);
+  const {logo, username} = user;
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const storageToken = useSelector(token);
 
-  const logout = () => {
+  useEffect(() => {
+    getSportTypes(storageToken)
+      .then(res => setSportTypes(res.data.results))
+      .catch(err => console.log(err))
+  }, []);
+
+  const logout = (): void => {
     localStorage.clear();
     dispatch(signOutReducer());
+    dispatch(closeModal());
     navigate("/sign-in");
 };
 
-  const avatarFiller = (): string => {
-      return UserName ? UserName[0].toUpperCase() : "!";
-  };
+  const avatarFiller = (): string =>  username ? username[0].toUpperCase() : "!";
 
-  const togglePanel = (isExpanded: boolean, panel: string) => {
+  const togglePanel = (isExpanded: boolean, panel: string): void => {
       if (isExpanded) {
          const filteredListOfPanels = listOfPanels.filter(panelItem => panelItem !== panel); 
          setListOfPanels(filteredListOfPanels);
@@ -61,6 +70,12 @@ const HeaderDropdown = () => {
           setListOfPanels([...listOfPanels, panel]);
       }
   };
+
+  const navigateHandler = (): void => {
+    dispatch(closeModal());
+    navigate("/profile");
+  };
+
 
   return (
     <div className='header-dropdown'>
@@ -73,18 +88,18 @@ const HeaderDropdown = () => {
       <Accordion expanded={listOfPanels.includes('panel1')} onChange={(_, isExpanded) => togglePanel(!isExpanded, 'panel1')}>
         <AccordionSummary
           sx={listOfPanels.includes('panel1') ? buttonStylesColored : buttonStyles}
-          expandIcon={listOfPanels.includes('panel1') ? <ArrowDropDownIcon sx={{color: "#458FAC"}}/> : <ClearIcon sx={{color: "#7D8081"}}/>}
+          expandIcon={listOfPanels.includes('panel1') ? <ArrowDropDownIcon sx={{color: buttonColor}}/> : <ClearIcon sx={{color: greyColor}}/>}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
           <Typography>Marketplace</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <span className='header__span-dropdown'>All Moments</span>
-          <span className='header__span-dropdown'>New</span>
-          <span className='header__span-dropdown'>Surfing</span>
-          <span className='header__span-dropdown'>Skateboarding</span>
-          <span className='header__span-dropdown'>Motocross</span>
+          {
+            sportTypes.map((sportType, index) => 
+            <span key={index} className='header__span-dropdown'>{sportType.name}</span>
+              )
+          }
         </AccordionDetails>
       </Accordion>
       <Divider sx={{background: "#FFFFFF", opacity: 0.9, zIndex: 100}}/>
@@ -97,23 +112,17 @@ const HeaderDropdown = () => {
                   aria-haspopup="true"
                   aria-expanded={'true'}
                   >
-              {userLogo ? 
-              <Avatar  src={userLogo} sx={avatarStyles}/> 
+              {logo ? 
+              <Avatar  src={logo} sx={avatarStyles}/> 
               : 
               <Avatar sx={avatarStyles}>{avatarFiller()}</Avatar>}
           </IconButton>
-          <span>{UserName}</span>
+          <span>{username}</span>
         </div>
-        <span className='header__span-dropdown' onClick={() => {
-                dispatch(closeModal())
-                navigate("/profile")
-              }}>View profile</span>
+        <span className='header__span-dropdown' onClick={navigateHandler}>View profile</span>
         <span className='header__span-dropdown'>Saved</span>
         <span className='header__span-dropdown'>Settings</span>
-        <span className='header__span-dropdown' onClick={() => {
-                dispatch(closeModal())
-                logout()
-              }}>Sign out</span>
+        <span className='header__span-dropdown' onClick={logout}>Sign out</span>
       </div>
     </div>
   );
