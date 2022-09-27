@@ -1,7 +1,24 @@
+@import "../../constants/styleConstants";
+
 .main-page {
+  position: relative;
   display: flex;
   padding: 20px 40px 64px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  min-height: 100%;
+}
+
+.countdown-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: $tablet) {
+  .main-page {
+    padding: 20px 16px 64px;
+  }
 }

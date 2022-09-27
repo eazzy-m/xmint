@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTransition, animated, easings } from 'react-spring';
 import {IImg} from "../../interfaces/IImg";
 

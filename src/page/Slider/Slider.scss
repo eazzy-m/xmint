@@ -1,10 +1,12 @@
+@import "../../constants/styleConstants";
+
 .slider {
   position: absolute;
   width: 588px;
   height: 100vh;
   top: 0;
   right: 0;
-  background-color: #458FAC;
+  background-color: $button-color;
 }
 
 .slide {
@@ -19,27 +21,25 @@
   position: absolute;
   top: 290px;
   left: 40px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
+  @include font400;
   font-size: 46px;
   line-height: 56px;
   width: 508px;
   margin: 0;
   padding: 0;
   z-index: 1;
-  color: white;
+  color: $light-color;
 }
 
 .slider__subtitle {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
+  @include font400;
   font-size: 26px;
   line-height: 38px;
   position: absolute;
   top: 420px;
   left: 40px;
   z-index: 1;
-  color: white;
+  color: $light-color;
 }
 
 .slide__img {
@@ -62,7 +62,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: $light-color;
   cursor: pointer;
 }
 

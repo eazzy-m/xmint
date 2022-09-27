@@ -1,3 +1,5 @@
+@import "../../constants/styleConstants";
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -10,6 +12,7 @@
   margin-left: 40px;
   width: 142px;
   height: 32px;
+  cursor: pointer;
 }
 
 .header__container {
@@ -18,7 +21,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: "Roboto", sans-serif;
+  @include font500;
   font-size: 14px;
   line-height: 18px;
 }
@@ -26,19 +29,36 @@
 .header__question {
   font-weight: 400;
   text-align: right;
-  color: #7D8081;
+  color: $grey-color;
 }
 
 .header__button {
   border-radius: 6px;
   min-height: 36px;
   padding: 9px 12px;
-  background-color: #fff;
-  border: 1px solid #D0D2D2;
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: 500;
+  background-color: $light-color;
+  border: 1px solid $border-color;
+  @include font500;
   font-size: 14px;
   line-height: 18px;
-  color: #161C1E;
+  color: $dark-color;
+}
+
+@media screen and (max-width: $tablet) {
+  .header {
+    width: calc(100vw);
+    height: 66px;
+  }
+  .header__container {
+    flex-direction: column-reverse;
+    width: 150px;
+    margin-top: 12px;
+    margin-right: 16px;
+    row-gap: 4px;
+  }
+  .header__logo {
+    margin-left: 16px;
+    width: 89px;
+    height: 20px;
+  }
 }

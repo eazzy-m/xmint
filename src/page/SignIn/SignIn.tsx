@@ -1,15 +1,15 @@
-import React, {FC, FormEvent, ChangeEvent, useState, MouseEventHandler} from 'react';
+import {FC, FormEvent, ChangeEvent, useState, useEffect, MouseEventHandler} from 'react';
 import {AxiosError} from "axios";
-import SubmitButton from "../../components/SubmitButton/SubmitButton";
-import FormInput from "../../components/FormInput/FormInput";
-import { signIn } from "../../api/api";
-import { ISignIn } from "../../interfaces/ISignIn";
+import { signIn, getUser } from "../../api/api";
+
 import {Link, useNavigate} from "react-router-dom";
-import "./SignIn.scss";
 import {useDispatch} from "react-redux";
-import {saveUser, signInReducer} from "../../redux/slice/auth";
-import Slider from "../Slider/Slider";
+import {signInReducer} from "../../redux/slice/auth";
+import { fillUsersData } from '../../redux/slice/user';
+
 import {IImg} from "../../interfaces/IImg";
+import { ISignIn } from "../../interfaces/ISignIn";
+
 import slideOne from "../../assets/slider/up-top-overcoming-challenges.jpg";
 import quiksilver from "../../assets/partnership/quiksilver-12-logo-svg-vector 1.svg";
 import dg from "../../assets/partnership/Asset 1 3.svg";
@@ -22,6 +22,12 @@ import slideThree from "../../assets/slider/pensive-man-riding-down-hill.jpg";
 import element from "../../assets/partnership/element-logo 1.svg";
 import bones from "../../assets/partnership/Asset 1 6.svg";
 import powelPeralta from "../../assets/partnership/Layer 2.svg";
+
+import SubmitButton from "../../components/SubmitButton/SubmitButton";
+import FormInput from "../../components/FormInput/FormInput";
+import Slider from "../Slider/Slider";
+
+import "./SignIn.scss";
 
 const SignIn:FC = () => {
 
@@ -36,6 +42,13 @@ const SignIn:FC = () => {
         password: ''
     };
 
+    useEffect(() => {
+        const token = localStorage.getItem('accessToken');
+        if (token) {
+            dispatch(signInReducer(token));
+        }
+    }, [])
+
     const [error, setError] = useState<AxiosError>();
     const [data, setData] = useState<ISignIn>(initialData);
     const [type, setType] = useState<boolean>(true);
@@ -44,19 +57,23 @@ const SignIn:FC = () => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        setData(initialData);
-        // {email: "mikalai.kozich@leverx.com", password: "@left4teamportal3A!"}
         signIn(data)
             .then(res => {
                 localStorage.setItem('accessToken', res.data.access);
-                dispatch(saveUser(res.data.email));
-                const token = localStorage.getItem('accessToken');
-                if (token) {
-                    dispatch(signInReducer());
-                }
-                navigate("/");
+                return res.data;
             })
-            .catch((err) => setError(err));
+            .then(res => {
+                getUser(res.id, res.access)
+                    .then((userData) => {
+                        localStorage.setItem('userData', JSON.stringify(userData.data));
+                        dispatch(fillUsersData(userData.data));
+                        dispatch(signInReducer(res.access)); 
+                        navigate("/");
+                    })
+                    .catch(err => setError(err));
+            })
+            .catch(err => setError(err));
+        setData(initialData);
     };
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -67,7 +84,7 @@ const SignIn:FC = () => {
     const showPassword: MouseEventHandler = (): void => {
         setType(!type);
     };
-
+    
     return (
         <>
         <div className="page">
@@ -111,7 +128,7 @@ const SignIn:FC = () => {
                 </p>
             </div>
         </div>
-            <Slider slides={imageArray}/>
+        {window.innerWidth > 900 && <Slider slides={imageArray}/>}
         </>
     );
 };

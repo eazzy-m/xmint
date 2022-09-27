@@ -1,0 +1,48 @@
+@import "../../constants/styleConstants";
+
+
+.brands {
+    width: 100%;
+    padding: 80px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.brands__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.brands__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 210px;
+    min-height: 243px;
+    background-color: $main-page-background-color;
+}
+
+.moment__image{
+    border-radius: 50%;
+    width: 88px;
+    height: 88px;
+}
+
+.moment__author {
+    @include font500;
+    color: $dark-color;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    margin: 16px auto;
+}
+
+.moment__logo {
+    width: 102px;
+    height: 20px;
+}

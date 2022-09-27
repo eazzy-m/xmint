@@ -1,0 +1,23 @@
+@mixin font400 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@mixin font500 {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+}
+
+$main-page-background-color: #F2F2F3;
+$light-color: #fff;
+$border-color: #D0D2D2;
+$grey-color: #7D8081;
+$button-color: #458FAC;
+$button-hover-color: #246a85;
+$dark-color: #161C1E;
+$light-grey-color: #A2A4A5;
+$light-border-color: #E8E8E9;
+$tablet: 900px;
+$mobile: 480px;

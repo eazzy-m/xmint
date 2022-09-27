@@ -1,19 +1,27 @@
-import React from 'react';
-import "./SmallCard.scss"
-import {Link} from "react-router-dom";
 
+import {useNavigate} from "react-router-dom";
+import Countdown from "../countdown/countdown";
+import { colors } from "../../constants/inlineConstants";
+import "./SmallCard.scss";
 
-const SmallCard = (props: {image: string, releaseDatetime: string, title: string, backStyle: boolean}) => {
-    const {image, releaseDatetime, title, backStyle} = props;
+const { mainPageBackgroundColor, darkColor} = colors;
+
+const SmallCard = (props: {image: string, releaseDatetime: string, title: string, backStyle: boolean, id: string, queueNumber: number}) => {
+    const {image, releaseDatetime, title, backStyle, id} = props;
+    const navigate = useNavigate();
+    
+    const navigateHandler = (): void => {
+        navigate("/learn-more", {state: id})
+    };
 
     return (
-        <div className={"small-card"} style={backStyle ? {backgroundColor: "#161C1E"} : {backgroundColor: "#F2F2F3"}}>
-            <div className={"countdown"}>
-                <span className={`card__link ${backStyle ? "card__link_light-background" : "card__link_dark-background"}`}>{releaseDatetime}</span>
-            </div>
+        <div className={"small-card"} style={backStyle ? {backgroundColor: darkColor} : {backgroundColor:  mainPageBackgroundColor}}>
+            <Countdown releaseDate={releaseDatetime} mode={!backStyle}/>
             <div className={"card__interface"}>
                 <button className={"button button_small"}>Pre-Order Now</button>
-                <Link className={`card__link ${backStyle ? "card__link_light-background" : "card__link_dark-background"}`} to="#">Learn more &rsaquo;</Link>
+                <button className={`card__link card__link${backStyle ? "_dark-background" : "_light-background"}`} 
+                    onClick={navigateHandler}
+                    >Learn more &rsaquo;</button>
             </div>
             <img src={image} alt={title} className={"card__image"}/>
 

@@ -8,5 +8,5 @@ export interface ILoginProps {
     name: string;
     type: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    error?: AxiosError | undefined
+    error?: AxiosError | undefined;
 }

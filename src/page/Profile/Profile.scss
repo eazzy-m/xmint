@@ -1,0 +1,81 @@
+@import "../../constants/styleConstants";
+.profile-container {
+    width: 100%;
+    min-height: 629px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-info-container {
+    margin-top: 48px;
+    width: 297px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.username-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.navigation {
+    width: calc(100% - 297px);
+}
+
+.user-username {
+    @include font500;
+    margin: 16px 0 8px;
+    text-align: center;
+    color: $dark-color;
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.user-firstname {
+    @include font400;
+    margin-bottom: 24px;
+    text-align: center;
+    color: $grey-color;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.user-interests {
+    @include font400;
+    color: $dark-color;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+@media screen and (max-width: $tablet) {
+    .profile-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .username-container {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        margin-left: 20px;
+    }
+    .user-info-container {
+        align-items: baseline;
+        margin-top: 12px;
+        margin-bottom: 6px;
+    }
+    .user-profile-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .navigation {
+        width: 100%;
+    }
+}

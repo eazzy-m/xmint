@@ -1,9 +1,27 @@
+
+@import "../../constants/styleConstants";
+
 .cards-array {
   width: 100%;
   padding: 20px 0;
   display: grid;
-  grid-template-columns: 620px 620px;
-  grid-template-rows: 670px 670px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 620px 670px;
   gap: 20px;
   justify-content: center;
+}
+
+.infinite-scroll-component__outerdiv {
+  width: 100%;
+}
+
+@media screen and (max-width: $tablet) {
+  .cards-array {
+    width: 100%;
+    padding: 20px 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: 20px;
+  }
 }

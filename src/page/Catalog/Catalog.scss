@@ -1,0 +1,34 @@
+@import "../../constants/styleConstants.scss";
+
+.catalog__description {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 690px;
+    z-index: 100;
+    top: 100px;
+}
+
+.catalog__logo {
+    width: 245px;
+    height: 60px;
+    margin: 16px auto 24px
+}
+
+.catalog__date {
+    @include font400;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: $light-color;
+}
+
+.catalog__title {
+    width: 680px;
+    @include font400;
+    font-size: 26px;
+    line-height: 38px;
+    text-align: center;
+    color: $light-color;
+}

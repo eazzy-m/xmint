@@ -1,8 +1,8 @@
-import React from 'react';
+
 import './App.css';
 import Header from "./page/Header/Header";
 import AppRout from "./routes/AppRout";
-
+import "./constants/MuiStylesProperties.scss"
 
 const App = () => {
     return (
