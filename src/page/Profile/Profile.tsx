@@ -5,22 +5,20 @@ import Footer from '../Footer/Footer';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import BasicTabs from '../../components/Tabs/ProfileTabs/Tabs';
-
+import {smallText, fontFive,colors} from "../../constants/inlineConstants"
 import "./Profile.scss";
 
+const {darkColor, borderColor} = colors;
 
-const style = {                        
+const style = {       
+    ...fontFive,
+    ...smallText,
     width: "297px",
     textTransform: 'none',
     margin: "16px 0 24px",
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontWeight: 500,
-    fontSize: "14px",
-    lineHeight: "18px",
-    color: "#161C1E",
+    color: darkColor,
     padding: "11px",
-    borderColor: '#D0D2D2'
+    borderColor: borderColor
 };
 
 const Profile = () => {

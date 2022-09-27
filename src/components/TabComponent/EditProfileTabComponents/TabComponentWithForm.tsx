@@ -42,9 +42,7 @@ const TabComponentWithForm = () => {
     });
 
 
-    const avatarFiller = (): string => {
-        return username ? username[0].toUpperCase() : "!";
-    };
+    const avatarFiller = (): string => username ? username[0].toUpperCase() : "!";
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();

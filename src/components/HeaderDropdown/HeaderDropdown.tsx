@@ -16,6 +16,9 @@ import { useNavigate } from 'react-router';
 import { signOutReducer } from '../../redux/slice/auth';
 import { closeModal } from '../../redux/slice/headerModal';
 import { getSportTypes } from '../../api/getSprotTypes';
+import { colors } from '../../constants/inlineConstants';
+
+const { greyColor, buttonColor } = colors;
 
 const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -27,7 +30,7 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary {...props} />
 ))(() => ({
   backgroundColor:"inherit",
-  color: "#7D8081",
+  color: greyColor,
   textTransform: "uppercase"
 }));
 
@@ -85,7 +88,7 @@ const HeaderDropdown = () => {
       <Accordion expanded={listOfPanels.includes('panel1')} onChange={(_, isExpanded) => togglePanel(!isExpanded, 'panel1')}>
         <AccordionSummary
           sx={listOfPanels.includes('panel1') ? buttonStylesColored : buttonStyles}
-          expandIcon={listOfPanels.includes('panel1') ? <ArrowDropDownIcon sx={{color: "#458FAC"}}/> : <ClearIcon sx={{color: "#7D8081"}}/>}
+          expandIcon={listOfPanels.includes('panel1') ? <ArrowDropDownIcon sx={{color: buttonColor}}/> : <ClearIcon sx={{color: greyColor}}/>}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >

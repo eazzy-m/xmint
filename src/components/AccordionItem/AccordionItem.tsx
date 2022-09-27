@@ -8,6 +8,8 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClearIcon from '@mui/icons-material/Clear';
 import Divider from '@mui/material/Divider';
 import { Ilinks } from '../../interfaces/Ilinks';
+import { colors } from '../../constants/inlineConstants';
+const { greyColor, whiteColor } = colors;
 
 const Accordion = styled((props: AccordionProps) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -19,7 +21,7 @@ const Accordion = styled((props: AccordionProps) => (
     <MuiAccordionSummary {...props} />
   ))(() => ({
     backgroundColor:"inherit",
-    color: "#7D8081",
+    color: greyColor,
     textTransform: "uppercase"
   }));
   
@@ -34,10 +36,10 @@ const AccordeonItem = (props: {title: string, linksList: Ilinks[], panel: string
 
   return (
     <div>
-      <Divider sx={{background: "#FFFFFF", opacity: 0.1}}/>
+      <Divider sx={{background: whiteColor, opacity: 0.1}}/>
         <Accordion expanded={listOfPanels.includes(panel)} onChange={(_, isExpanded) => togglePanel(!isExpanded, panel)}>
             <AccordionSummary
-              expandIcon={listOfPanels.includes(panel) ? <ArrowDropDownIcon sx={{color: "#7D8081"}}/> : <ClearIcon sx={{color: "#7D8081"}}/>}
+              expandIcon={listOfPanels.includes(panel) ? <ArrowDropDownIcon sx={{color: greyColor}}/> : <ClearIcon sx={{color: greyColor}}/>}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >

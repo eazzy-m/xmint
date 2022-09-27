@@ -9,15 +9,13 @@ import "./Footer.scss";
 
 const Footer = () => {
 
-    const [showCopyright, setShowCopyright] = useState<boolean>(false); // if desctope : 
+    const [showCopyright, setShowCopyright] = useState<boolean>(false); 
 
     useEffect(() => {
         window.innerWidth <= 900 ? setShowCopyright(true) : setShowCopyright(false);
     }, []);
 
-    const showHide = (flag: boolean) => {
-        return flag ? {display : "inline"} : {display : "none"};
-    };
+    const showHide = (flag: boolean) =>  flag ? {display : "inline"} : {display : "none"};
 
     return (
         <div className="footer">
@@ -29,8 +27,7 @@ const Footer = () => {
                 <span style={showHide(!showCopyright)} className={"footer__copyright"}>© 2022 Xmint Inc. All rights reserved.</span>
             </div>
 
-            {
-                showCopyright 
+            {showCopyright 
                 ?
                 <FooterAccordeon/>
                 :

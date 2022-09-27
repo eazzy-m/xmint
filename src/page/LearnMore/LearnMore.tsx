@@ -19,7 +19,7 @@ const LearnMore = () => {
   const [error, setError] = useState();
   const location = useLocation();
   const id = location.state;
-  const storeToken = useSelector(token)
+  const storeToken = useSelector(token);
   
   useEffect(() => {
     getCardById(id, storeToken)

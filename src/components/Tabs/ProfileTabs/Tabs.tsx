@@ -8,25 +8,21 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TabComponent from "../../TabComponent/ProfileTabComponents/TabComponent";
-
-import "./TabsStyle.scss";
-
+import {fontFive, smallText, colors} from "../../../constants/inlineConstants"
 interface TabPanelProps {
   children?: ReactNode;
   index: number;
   value: number;
 }
 
+const {greyColor, darkColor} = colors
 const style = {
-  fontFamily: 'Roboto',
-  fontStyle: "normal",
-  fontWeight: 500,
-  fontSize: "14px",
-  lineHeight: "18px",
-  color: "#7D8081",
+  ...fontFive,
+  ...smallText,
+  color: greyColor,
   padding: 0,
   '&.Mui-selected': {
-   color: '#161C1E',
+   color: darkColor,
  },
 };
 

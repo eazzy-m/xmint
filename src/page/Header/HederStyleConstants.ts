@@ -1,25 +1,28 @@
+import {colors, fontFive, smallText} from "../../constants/inlineConstants";
+
+const {buttonColor, darkColor} = colors;
+
 export const avatarStyles = {
     width: 32,
     height: 32,
-    border: "1px solid #458FAC",
+    border: `1px solid ${buttonColor}`,
     borderRadius: "50%" 
    };
 
 export const buttonStyles = { 
+  ...fontFive,
+  ...smallText,
    backgroundColor: "inherit",
    border: "none",
    cursor: "pointer",
-   fontFamily: "Roboto",
-   fontWeight: 500,
-   color: "#161C1E",
-   fontSize: "14px",
-   lineHeight: "18px",
+   color: darkColor,
    textTransform: "capitalize",
    };
+
 export const buttonStylesColored = { 
     ...buttonStyles,
-    color: "#458FAC"
-    };
+    color: buttonColor,
+  };
 
 export const marketplaceMenuStyles = {
    overflow: 'visible',
@@ -72,4 +75,4 @@ export const avatarMenuStyles = {
  export const burgerButtonStyles = {
     width: "20px",
     height: "20px"
- }
+ };

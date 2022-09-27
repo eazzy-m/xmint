@@ -4,6 +4,18 @@ import Fetcher from "./fetcher"
 
 const fetcher = new Fetcher({});
 
+const headersHandler = (token: unknown) => {
+    return {
+        Authorization: `Bearer ${token}`
+    }
+}
+
+export const getUser = (id: unknown, token: unknown) => {
+    return fetcher.request<any, any>({
+        url: `/users/${id}/`,
+        headers: headersHandler(token)
+    });
+};
 
 export const signIn = (data: ISignIn) => {
     return fetcher.request<any, any>({
@@ -14,24 +26,12 @@ export const signIn = (data: ISignIn) => {
     );
 };
 
-export const getUser = (id: unknown, token: unknown) => {
-    return fetcher.request<any, any>({
-        url: `/users/${id}/`,
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    });
-};
-
 export const updateUser = (data: IUpdateUserData, id: string, token: unknown ) => {
     return fetcher.request<any, any>({
             url: `/users/${id}/`,
             method: 'PATCH',
             data: {...data},
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            headers: headersHandler(token)
         }
     );
 };

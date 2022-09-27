@@ -98,7 +98,7 @@ const Header:FC = () => {
                           MenuListProps={{
                         "aria-labelledby" : "header__button"
                     }}>
-                        <MenuItem onClick={handleClose}>All NFTs</MenuItem>
+                        <MenuItem onClick={() => {navigate('/catalog')}}>All NFTs</MenuItem>
                         <MenuItem onClick={handleClose}>Surfing</MenuItem>
                         <MenuItem onClick={handleClose}>Skating</MenuItem>
                         <MenuItem onClick={handleClose}>Skateboarding</MenuItem>

@@ -12,8 +12,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import KeyIcon from '@mui/icons-material/Key';
 import LogoutIcon from '@mui/icons-material/Logout';
 import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
-import "./TabsStyle.scss";
+import {fontFive, colors, smallText} from "../../../constants/inlineConstants"
 
+const {greyColor, mainPageBackgroundColor, buttonColor} = colors;
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -21,19 +22,16 @@ interface TabPanelProps {
 }
 
 const style = {
+  ...fontFive,
+  ...smallText,
   width: window.innerWidth > 900 ? "210px" : "113px",
   height: window.innerWidth > 900 ? "40px" : "28px",
   textTransform: "none",
-  fontFamily: 'Roboto',
-  fontStyle: "normal",
-  fontWeight: 500,
-  fontSize: "14px",
-  lineHeight: "18px",
-  color: "#7D8081",
+  color: greyColor,
   padding: window.innerWidth > 900 ? "10px 16px" : 0,
   '&.Mui-selected': {
-      color: '#458FAC',
-      background: "#F2F2F3",
+      color: buttonColor,
+      background: mainPageBackgroundColor,
       borderRadius: "6px"
 },
  }
