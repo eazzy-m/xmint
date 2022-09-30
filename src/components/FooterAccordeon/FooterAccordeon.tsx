@@ -32,7 +32,7 @@ const FooterAccordeon = () => {
     <div>
       {
         listOfAccordions.map((item, index) => 
-            <AccordeonItem key={index} panel={item.panel} listOfPanels={listOfPanels} title={item.title} togglePanel={togglePanel}>
+            <AccordeonItem key={index} panel={item.panel} listOfPanels={listOfPanels} title={item.title} togglePanel={togglePanel} divider={'top'} mode='dark'>
               <FooterUL linksList={item.listOfLinks}/>
             </AccordeonItem>
           )

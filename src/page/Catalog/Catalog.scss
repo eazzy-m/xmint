@@ -160,3 +160,17 @@
 .filters__button_active {
     color: $button-color;
 }
+
+.accordeons_container .MuiCollapse-root .MuiCollapse-wrapper .MuiCollapse-wrapperInner .MuiAccordion-region {
+    padding: 0;
+}
+
+.accordeons_container .MuiPaper-root .MuiAccordionSummary-root {
+    border-top: none;
+    padding: 0;
+}
+
+.MuiCollapse-root .MuiCollapse-wrapper .MuiCollapse-wrapperInner .MuiAccordion-region .MuiAccordionDetails-root{
+    border-top: none;
+    padding: 16px 0 20px;
+}
