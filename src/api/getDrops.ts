@@ -34,3 +34,11 @@ export const getDrops = (id: unknown, token: unknown) => {
         headers: headersHandler(token)
     });
 };
+
+//https://dev.xmint.co/api/v1/moments/?limit=9&offset=0&
+export const getMoments = (token: unknown,  filter?: string | null, limit=9, offset=0) => {
+    return fetcher.request<any, any>({
+        url: filter ? `moments/?limit=${limit}&offset=${offset}&category__in=${filter}` : `moments/?limit=${limit}&offset=${offset}`,
+        headers: headersHandler(token)
+    });
+};

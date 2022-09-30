@@ -3,12 +3,11 @@ import { styled } from '@mui/material/styles';
 import MuiAccordionSummary, {AccordionSummaryProps,} from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import FooterUL from "../../components/FooterUL/FooterUL";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ClearIcon from '@mui/icons-material/Clear';
 import Divider from '@mui/material/Divider';
-import { Ilinks } from '../../interfaces/Ilinks';
 import { colors } from '../../constants/inlineConstants';
+import { ReactNode } from 'react';
 const { greyColor, whiteColor } = colors;
 
 const Accordion = styled((props: AccordionProps) => (
@@ -31,8 +30,8 @@ const Accordion = styled((props: AccordionProps) => (
   }));
 
 
-const AccordeonItem = (props: {title: string, linksList: Ilinks[], panel: string, listOfPanels: string[], togglePanel: (isExpanded: boolean, panel: string) => void}) => {
-  const {title, linksList, panel, listOfPanels, togglePanel} = props;
+const AccordeonItem = (props: {title: string,  panel: string, listOfPanels: string[], togglePanel: (isExpanded: boolean, panel: string) => void, children: ReactNode}) => {
+  const {title, panel, listOfPanels, togglePanel, children} = props;
 
   return (
     <div>
@@ -46,7 +45,7 @@ const AccordeonItem = (props: {title: string, linksList: Ilinks[], panel: string
               <Typography>{title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-                <FooterUL linksList={linksList}/>
+                {children}
             </AccordionDetails>
           </Accordion>
     </div>

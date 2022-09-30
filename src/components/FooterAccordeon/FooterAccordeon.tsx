@@ -3,6 +3,7 @@ import Divider from '@mui/material/Divider';
 import {companyList, helpList, marketplaceList, followUsList} from "../../constants/FooterConstants/constants";
 import AccordeonItem from '../AccordionItem/AccordionItem';
 import { IAccordion } from '../../interfaces/IAccordion';
+import FooterUL from '../FooterUL/FooterUL';
 
 
 const FooterAccordeon = () => {
@@ -31,7 +32,9 @@ const FooterAccordeon = () => {
     <div>
       {
         listOfAccordions.map((item, index) => 
-            <AccordeonItem key={index} panel={item.panel} listOfPanels={listOfPanels} linksList={item.listOfLinks} title={item.title} togglePanel={togglePanel}/>
+            <AccordeonItem key={index} panel={item.panel} listOfPanels={listOfPanels} title={item.title} togglePanel={togglePanel}>
+              <FooterUL linksList={item.listOfLinks}/>
+            </AccordeonItem>
           )
       }
       <Divider sx={{background: "#FFFFFF", opacity: 0.1}}/>

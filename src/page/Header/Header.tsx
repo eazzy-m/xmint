@@ -4,9 +4,9 @@ import wallet from "../../assets/wallet/Wallet.svg";
 import ring from "../../assets/ring/Default.svg";
 import search from "../../assets/search/search-svgrepo-com.svg";
 import { useSelector, useDispatch } from "react-redux";
-import { useState, FC, MouseEvent } from "react";
+import { useState, useEffect, FC, MouseEvent } from "react";
 import { useNavigate } from "react-router";
-import { isAuth, userdata, isModalOpen } from "../../redux/store";
+import { isAuth, userdata, isModalOpen, token} from "../../redux/store";
 import { signOutReducer } from "../../redux/slice/auth";
 import { openModal, closeModal } from "../../redux/slice/headerModal";
 import { Menu, MenuItem, Avatar, IconButton, ListItemIcon, Button, ButtonGroup } from "@mui/material";
@@ -15,17 +15,19 @@ import ClearIcon from '@mui/icons-material/Clear';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import { avatarMenuStyles, avatarStyles, burgerButtonStyles, buttonStyles, marketplaceMenuStyles } from "./HederStyleConstants";
 import HeaderDropdown from "../../components/HeaderDropdown/HeaderDropdown";
-
+import { getSportTypes } from "../../api/getSprotTypes";
 import "./Header.scss";
 import "./HeaderMainPage.scss";
 
 const Header:FC = () => {
     const [anchorMarketplaceEl, setAncorMarketplaceEl] = useState<null | HTMLElement>(null);
     const [anchorAvatarEl, setAnchorAvatarEl] = useState<null | HTMLElement>(null);
+    const [sportTypes, setSportTypes] = useState([{name: 'All Moments'}, {name: 'New'}, {name: 'Surfing'}, {name: 'Skateboarding'}, {name: 'Motocross'}]);
     const openMArketplace = Boolean(anchorMarketplaceEl);
     const openAvatar = Boolean(anchorAvatarEl);
     const auth = useSelector(isAuth);
     const user = useSelector(userdata);
+    const storageToken = useSelector(token);
     const { logo, username } = user;
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -37,6 +39,12 @@ const Header:FC = () => {
         dispatch(signOutReducer());
         navigate("/sign-in");
     };
+
+    useEffect(() => {
+        getSportTypes(storageToken)
+          .then(res => setSportTypes(res.data.results))
+          .catch(err => console.log(err))
+      }, []);
 
     const avatarFiller = (): string => username ? username[0].toUpperCase() : "!";
 
@@ -98,13 +106,18 @@ const Header:FC = () => {
                           MenuListProps={{
                         "aria-labelledby" : "header__button"
                     }}>
-                        <MenuItem onClick={() => {navigate('/catalog')}}>All NFTs</MenuItem>
-                        <MenuItem onClick={handleClose}>Surfing</MenuItem>
-                        <MenuItem onClick={handleClose}>Skating</MenuItem>
-                        <MenuItem onClick={handleClose}>Skateboarding</MenuItem>
-                        <MenuItem onClick={handleClose}>Motocross</MenuItem>
-                        <MenuItem onClick={handleClose}>Snowboarding</MenuItem>
-                        <MenuItem onClick={handleClose}>Tennis</MenuItem>
+                        <MenuItem onClick={() => {
+                            handleClose()
+                            navigate('/catalog', {state: ''} )}
+                            }>All NFTs</MenuItem>
+                        {
+                            sportTypes.map((sportType, index) =>
+                            <MenuItem key={index} onClick={() => {
+                                handleClose()
+                                navigate('/catalog', {state: sportType.name})
+                            }}>{sportType.name}</MenuItem>
+                            )
+                        }
                     </Menu>
                     <ButtonGroup sx={{display: "flex", gap: "26px"}}>
                         {!modal &&

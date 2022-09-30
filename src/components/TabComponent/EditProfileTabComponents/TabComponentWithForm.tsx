@@ -14,9 +14,10 @@ import {ResetButtonStyle,
     DisabledSubmitButtonStyle,
     AvatarStyle, } from "./stylesConstants";
 import { updateUser } from '../../../api/api';
-import "./FormStyles.scss";
 import { IUpdateUserData } from '../../../interfaces/IUpdateUserData';
 
+
+import "./FormStyles.scss";
 
 const TabComponentWithForm = () => {
 

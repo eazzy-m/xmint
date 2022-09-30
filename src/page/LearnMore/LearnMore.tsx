@@ -18,7 +18,7 @@ const LearnMore = () => {
   const [card, setCard] = useState<ICard>();
   const [error, setError] = useState();
   const location = useLocation();
-  const id = location.state;
+  const id = location.state
   const storeToken = useSelector(token);
   
   useEffect(() => {

@@ -8,6 +8,7 @@ import SmallCard from "../CardSmall/SmallCard";
 import defaultImage from "../../assets/default-image/XMint1_Pack_Logo_001.png";
  
 import "./SmallCardsList.scss";
+import Loader from '../Loader/Loader';
 
 const SmallCardsList = () => {
     const [cards, setCards] = useState<ICard[]>([] as ICard[]);
@@ -80,7 +81,7 @@ const SmallCardsList = () => {
                 dataLength={cards.length - 3} //This is important field to render the next data
                 next={fetchData}
                 hasMore={hasMore}
-                loader={<h4 style={{margin: "10px auto"}}>Loading...</h4>}>
+                loader={<Loader/>}>
                 <div className={"cards-array"}>
                     {cards.map((card, index) => (
                         <SmallCard key={card.id}

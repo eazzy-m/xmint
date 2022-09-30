@@ -31,7 +31,6 @@ class Fetcher {
     private instance: AxiosInstance;
 
     constructor({ baseURL = `${API_HOST}${API_URL}`, timeout = 120 * 1000 }: IConfig) {
-        console.log((window as Window).API_HOST);
         this.instance = axios.create({
             baseURL,
             timeout,

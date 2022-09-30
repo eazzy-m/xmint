@@ -95,9 +95,18 @@ const HeaderDropdown = () => {
           <Typography>Marketplace</Typography>
         </AccordionSummary>
         <AccordionDetails>
+        <span onClick={() => {
+                  dispatch(closeModal())
+                  navigate("/catalog", {state: ''})
+                }}
+             className='header__span-dropdown'>All NFTs</span>
           {
             sportTypes.map((sportType, index) => 
-            <span key={index} className='header__span-dropdown'>{sportType.name}</span>
+            <span onClick={() => {
+                  dispatch(closeModal())
+                  navigate("/catalog", {state: sportType.name})
+                }}
+             key={index} className='header__span-dropdown'>{sportType.name}</span>
               )
           }
         </AccordionDetails>
