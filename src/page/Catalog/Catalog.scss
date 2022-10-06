@@ -69,73 +69,6 @@
     row-gap: 40px;
 }
 
-.moment__card {
-    display: flex;
-    flex-direction: column;
-    width: 325px;
-    min-height: 362px;
-}
-
-.moment__card-wrapper {
-
-    background-color: $main-page-background-color;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.moment__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    box-shadow: 0px 24px 24px -16px rgba(22, 28, 30, 0.2);
-    border-radius: 8px;
-}
-
-.moment__discription {
-    margin-top: 12px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-}
-
-.moment__announcement{
-    @include font500;
-    font-size: 16px;
-    line-height: 20px;
-    color: $button-color;
-    margin-bottom: 4px;
-}
-
-.moment__title {
-    @include font500;
-    font-size: 16px;
-    line-height: 20px;
-    color: $dark-color;
-}
-
-.moment__footer {
-    margin-top: 8px;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
-.moment__price {
-    @include font400;
-    font-size: 16px;
-    line-height: 20px;
-    color: $dark-color;
-}
-
-.moment__likes {
-    @include font500;
-    font-size: 14px;
-    line-height: 18px;
-    text-align: right;
-    color: $grey-color;
-}
 
 .buttons__container {
     display: flex;
@@ -173,4 +106,26 @@
 .MuiCollapse-root .MuiCollapse-wrapper .MuiCollapse-wrapperInner .MuiAccordion-region .MuiAccordionDetails-root{
     border-top: none;
     padding: 16px 0 20px;
+}
+
+
+.filters-summary__container {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.filters-summary__title {
+    @include font500;
+    font-size: 20px;
+    line-height: 28px;
+    color: $dark-color;
+    margin: 20px 0 16px;
+}
+
+.filters-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 20px;
 }

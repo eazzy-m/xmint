@@ -4,6 +4,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import share from "../../assets/share/Share.svg";
+import "./CatalogCard.scss";
 
 const {greyColor} = colors;
 

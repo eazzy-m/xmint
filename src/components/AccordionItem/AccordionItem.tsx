@@ -8,7 +8,6 @@ import ClearIcon from '@mui/icons-material/Clear';
 import Divider from '@mui/material/Divider';
 import { colors } from '../../constants/inlineConstants';
 import { ReactNode } from 'react';
-import { SxProps, Theme } from '@mui/material/styles';
 const { greyColor, whiteColor, darkColor } = colors;
 
 const Accordion = styled((props: AccordionProps) => (
@@ -31,21 +30,35 @@ const Accordion = styled((props: AccordionProps) => (
   }));
 
 
-const AccordeonItem = (props: {sx?: SxProps<Theme> | undefined, title: string,  panel: string, listOfPanels: string[], togglePanel: (isExpanded: boolean, panel: string) => void, children: ReactNode, divider?: 'top' | "bottom", mode?: 'light' | 'dark'}) => {
-  const {title, panel, listOfPanels, togglePanel, children, sx, divider, mode} = props;
+const AccordeonItem = (props: {title: string,  panel: string, listOfPanels: string[], 
+                                togglePanel: (isExpanded: boolean, panel: string) => void,
+                                children: ReactNode, divider?: 'top' | "bottom",
+                                mode?: 'light' | 'dark', collapseIcon?: ReactNode,
+                                titleMode?: 'upperCase' | 'capitalize' | 'lowerCase' }) => {
+  const {title, titleMode, panel, listOfPanels, togglePanel, children, divider, mode, collapseIcon} = props;
+
+  const titleModify = () => {
+    if (titleMode === 'capitalize') {
+      return {textTransform: "capitalize"}
+    } else if (titleMode === 'lowerCase') {
+      return {textTransform: "lowercase"}
+    } else {
+      return {textTransform: "uppercase "}
+    }
+  };
 
   return (
     <div>
       {
         divider === 'top' && <Divider sx={{background: mode === 'dark' ? whiteColor : darkColor, opacity: 0.1}}/>
       }
-        <Accordion sx={sx} expanded={listOfPanels.includes(panel)} onChange={(_, isExpanded) => togglePanel(!isExpanded, panel)}>
+        <Accordion  expanded={listOfPanels.includes(panel)} onChange={(_, isExpanded) => togglePanel(!isExpanded, panel)}>
             <AccordionSummary
-              expandIcon={listOfPanels.includes(panel) ? <ArrowDropDownIcon sx={{color: greyColor}}/> : <ClearIcon sx={{color: greyColor}}/>}
+              expandIcon={listOfPanels.includes(panel) ? <ArrowDropDownIcon sx={{color: greyColor}}/> : collapseIcon}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>{title}</Typography>
+              <Typography sx={titleModify()}>{title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
                 {children}
