@@ -4,12 +4,13 @@ import { IFilters } from '../../interfaces/IFiltersList';
 import FilterItem from '../FilterItem/FilterItem';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import { colors } from '../../constants/inlineConstants';
+import { IFilter } from '../../interfaces/IFilter';
 const { greyColor } = colors;
 
-const CatalogFilters = (props: {fillFilters: (title: string, filters: string[], filtersLabels: string[]) => void,
-     labelsList: string[], filters: IFilters}) => {
+const CatalogFilters = (props: {fillFilters: (title: string, filters: string[], filtersLabels: IFilter[], toggledFitler: IFilter) => void, clear: boolean
+     labelsList: IFilter[], filters: IFilters, removedFilter: IFilter}) => {
 
-    const {fillFilters, labelsList, filters} = props;
+    const {fillFilters, labelsList, filters, clear, removedFilter} = props;
 
     const [listOfPanels, setListOfPanels] = useState<string[]>(['panel1', 'panel2', 'panel3']);
 
@@ -35,7 +36,8 @@ const CatalogFilters = (props: {fillFilters: (title: string, filters: string[], 
                 <AccordeonItem key={index} panel={item.panel} listOfPanels={listOfPanels} 
                                title={item.title} titleMode='capitalize' togglePanel={togglePanel} 
                                divider={'top'} mode='dark' collapseIcon={<ArrowDropDown sx={{color: greyColor}}/>}>
-                    <FilterItem listOfLabels={labelsList} fillFilters={fillFilters} checkboxes={item.checkboxes} title={item.title}/>
+
+                    <FilterItem removedFilter={removedFilter} clear={clear} listOfLabels={labelsList} fillFilters={fillFilters} checkboxes={item.checkboxes} title={item.title}/>
                 </AccordeonItem>
             )
         }

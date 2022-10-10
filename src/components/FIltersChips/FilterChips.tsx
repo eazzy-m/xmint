@@ -1,16 +1,16 @@
-import React from 'react'
-import {Chip} from '@mui/material';
 
-const FilterChips = (props: {filters: string[]}) => {
+import { Chip } from '@mui/material';
+import { IFilter } from '../../interfaces/IFilter';
 
-  const {filters} = props;
+const FilterChips = (props: {filters: IFilter[], removeFilter: (filter: IFilter) => void}) => {
+
+  const {filters, removeFilter} = props;
   
-
   return (
     <>
       {
         filters.map((filter, index) =>
-          <Chip key={index} label={filter} onDelete={() => {}}/>
+          <Chip key={index} label={filter.label} onDelete={() => removeFilter(filter)}/>
         )        
       }
     </>

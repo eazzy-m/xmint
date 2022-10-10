@@ -7,9 +7,7 @@ import { getSportTypes } from '../../api/getSprotTypes';
 import  {token } from "../../redux/store";
 import { IGoods } from '../../interfaces/IGoods';
 import { IFilters } from '../../interfaces/IFiltersList';
-import { IBrands } from '../../interfaces/IBrands';
-import { IAthlete } from '../../interfaces/IAthletes';
-import { IPlaces } from '../../interfaces/IPlaces';
+import { IFilter } from '../../interfaces/IFilter';
 import { FormControlLabel, Switch, Divider, Button, Menu, MenuItem} from '@mui/material';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { KeyboardArrowUp, KeyboardArrowDown } from '@mui/icons-material';
@@ -22,45 +20,40 @@ import CatalogTitle from '../../components/CatalogTitle/CatalogTitle';
 import NoMatches from '../../components/NoMatches/NoMatches';
 import CatalogCard from '../../components/CatalogCard/CatalogCard';
 import Loader from '../../components/Loader/Loader';
-
-import "./Catalog.scss";
-
-import { colors, fontFive } from "../../constants/inlineConstants";
 import FilterChips from '../../components/FIltersChips/FilterChips';
-const {greyColor} = colors;
-const momentFooterStyle = {color: greyColor, width: "20px", height: "20px"};
-const formLabelStyle = {display: 'flex', justifyContent: "space-between", marginLeft: 0, width: "100%"};
-const clearAllButtonStyle = {textTransform: "capitalize", color: greyColor, fontSize: "14px", lineHeight: "18px", font: fontFive}
-const Catalog = () => {
+import "./Catalog.scss";
+import { clearAllButtonStyle, momentFooterStyle, formLabelStyle } from "./CatalogStyleConstants";
 
+
+const Catalog = () => {
     const location = useLocation();
+    const category = location.state as string;
     const [moments, setMoments] = useState<IGoods[]>([]);
     const [sportTypes, setSportTypes] = useState([{name: 'New'}, {name: 'Surfing'}, {name: 'Skateboarding'}, {name: 'Motocross'}]);
     const [filters, setFilters] = useState<IFilters>({ athletes: [], brands: [], places: [] });
-    const [summaryFiltersLabels, setSummaryFiltersLabels] = useState<string[]>([])
-    const [activeFilters, setActiveFilters] = useState({places: '', brands: '', athletes: ''});
+    const [activeFilters, setActiveFilters] = useState({athletes: '', brands: '', places: '' });
     const [additionalFilter, setAdditionalFilter] = useState<string>('Popular');
     const [itemsCount, setItemsCount] = useState<number>(0);
-    const category = location.state as string;
     const [activeCategory, setActiveCategory] = useState(category);
     const [offset, setOffset] = useState(9);
     const [mode, setMode] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const storageToken = useSelector(token);
-    const [summaryFilters, setSummaryFilters] = useState<string[]>([]);
+    const [summaryFilters, setSummaryFilters] = useState<IFilter[]>([{label: '', data: '', categoryName: ''}]);
     const [anchorMarketplaceEl, setAncorMarketplaceEl] = useState<null | HTMLElement>(null);
     const openMArketplace = Boolean(anchorMarketplaceEl);
     const [clear, setClear] = useState(false);
     const listOfAdditionalFilters = ['Popular', 'Newest', 'Highest price', 'Lowest price', 'Most likes'];
+    const [removedFilter, setRemovedFilter] = useState<IFilter>({label: '', data: '', categoryName: ''});
     const {places, brands, athletes} = activeFilters;
-    const getDefaultData = (category: string | null, places: string | undefined, brands: string | undefined, athletes: string | undefined) => {
+
+    const getDefaultData = (category: string | null, places: string | undefined, brands: string | undefined, athletes: string | undefined): void => {
         setActiveCategory(category ? category : "All Moments");
             getSportTypes(storageToken)
                 .then(res => setSportTypes(res.data.results))
                 .then(() => {
                     getMoments(storageToken, activeCategory === 'All Moments' ? '' : activeCategory, 9, 0, places, brands, athletes)
                         .then(res => {
-                           // console.log(res.data.data.results);
                             setItemsCount(res.data.data.count);
                             setMoments(res.data.data.results);
                         })
@@ -69,7 +62,6 @@ const Catalog = () => {
                     .catch(err => console.log('get sport types or moments error: ', err));
     };
 
-
     useEffect(() => {
         for (let keys in filters) {
             getFilteres(keys, storageToken)
@@ -77,39 +69,25 @@ const Catalog = () => {
                     setFilters(prevState => ({
                         ...prevState,
                         [keys]: res.data.results
-                    }))
-                    const compareLabels = (): string[] => { 
-                       return res.data.results.map((list: IBrands | IPlaces | IAthlete) => {
-                          return keys === 'athletes' ? list.full_name + '' : list.name + '';
-                        })
-                    }
-                setSummaryFiltersLabels(prevState => ([...prevState, ...compareLabels()]))
+                    })) 
                 })
                 .catch(err => console.log(err));
         }
-        let uniqueChars = [] as string[];
-        summaryFilters.forEach((element) => {
-            if (!uniqueChars.includes(element)) {
-                uniqueChars.push(element);
-            }
-        });
-        setSummaryFiltersLabels(uniqueChars)
+        setSummaryFilters([]);
     }, []);
 
 
     useEffect(() => {
-
         getDefaultData(activeCategory, places, brands, athletes);
-        console.log('rerender');
     }, [moments.length, places, brands, athletes]);
 
     useEffect(() => {
         if (places || brands || athletes) {
-            setClear(true)
+            setClear(true);
         }
     }, [places, brands, athletes]);
 
-    const itemsFilter = (evt: SyntheticEvent) => {
+    const itemsFilter = (evt: SyntheticEvent): void => {
         //@ts-ignore
         const {name} = evt.target;
             setActiveCategory(name);
@@ -122,65 +100,65 @@ const Catalog = () => {
                 .catch(err => console.log(err));
     };
 
-        const toggleSwitch = () => {
-            setMode(!mode);
-        };
+    const toggleSwitch = (): void => {
+        setMode(!mode);
+    };
 
-        const handleMarketplaceClick = (evt: React.MouseEvent<HTMLButtonElement>): void => {
-            setAncorMarketplaceEl(evt.currentTarget);
-        };
+    const handleMarketplaceClick = (evt: React.MouseEvent<HTMLButtonElement>): void => {
+        setAncorMarketplaceEl(evt.currentTarget);
+    };
 
-        const handleClose = (): void => {
-            setAncorMarketplaceEl(null);
-        };
+    const handleClose = (): void => {
+        setAncorMarketplaceEl(null);
+    };
 
-        const selectAdditionalFilter = (evt: SyntheticEvent) => {
-            //@ts-ignore
-            setAdditionalFilter(evt.target.id);
-            handleClose();
-        };
+    const selectAdditionalFilter = (evt: SyntheticEvent): void => {
+        //@ts-ignore
+        setAdditionalFilter(evt.target.id);
+        handleClose();
+    };
 
-        const fetch = async () => {
-            const filter = activeCategory === "All Moments" ? '' : activeCategory;
-            const res = await getMoments(storageToken, filter, 9, offset, places, brands, athletes);
-            return res.data.data.results;
-        };
-    
-        const fetchData = async () => {
-            const moreCards = await fetch();
-            setMoments([...moments, ...moreCards]);
-            if (moreCards.length === 0 || moreCards.length < 4) {
-                setHasMore(false);
-            }
-            setOffset(offset + 9);
-        };
- 
-        const fillFilters = (title: string, filters: string[], filtersLabels: string[]): void => {
-            console.log('fill');
-            const filtersCombiner = (filters: string[]): string => {
-                const concatfilter = filters.map((elem) => elem.split(' ').join('+'));
-                return concatfilter.join('%2C');
-            };
-            //prevState => ([...prevState, ...filtersLabels])
-            setSummaryFilters([...summaryFilters, ...filtersLabels])
-         
+    const fetch = async (): Promise<IGoods[]> => {
+        const filter = activeCategory === "All Moments" ? '' : activeCategory;
+        const res = await getMoments(storageToken, filter, 9, offset, places, brands, athletes);
+        return res.data.data.results;
+    };
 
-            setActiveFilters(prevState => ({
-                    ...activeFilters,
-                    [title]: filtersCombiner(filters)
-            }));
-        };
-
-        const clearAll = () => {
-            console.log('clear all ');
-            setSummaryFilters([])
-            setSummaryFiltersLabels([])
-            setActiveFilters({places: '', brands: '', athletes: ''})
-            setClear(false)
+    const fetchData = async (): Promise<void> => {
+        const moreCards = await fetch();
+        setMoments([...moments, ...moreCards]);
+        if (moreCards.length === 0 || moreCards.length < 4) {
+            setHasMore(false);
         }
-        // console.log('summary filters: ', summaryFilters, 'SummaryFiltersLabels: ', summaryFiltersLabels, 'activeFilters: ', {places, brands, athletes});
-        
+        setOffset(offset + 9);
+    };
 
+    const filtersCombiner = (filters: string[]): string => {
+        return filters.map((elem) => elem.split(' ').join('+')).join('%2C');
+    };
+
+    const fillFilters = (title: string, filters: string[], filtersData: IFilter[], toggledFilter: IFilter): void => {
+
+        const uniqueValues = [] as IFilter[];
+        filtersData.forEach(data => {
+            if (!summaryFilters.includes(data)) {
+                uniqueValues.push(data);
+            }
+        });
+
+        setSummaryFilters([...summaryFilters.filter(elem => elem.label !== toggledFilter.label), ...uniqueValues]);
+        setActiveFilters({...activeFilters, [title]: filtersCombiner(filters)});
+    };
+
+    const removeFilter = (filter: IFilter): void => {
+        setRemovedFilter(filter);
+    };
+
+    const clearAll = (): void => {
+        setSummaryFilters([]);
+        setActiveFilters({athletes: '', brands: '', places: '' });
+        setClear(false);
+    };
 
   return (
     <>
@@ -247,7 +225,7 @@ const Catalog = () => {
                                 {!!summaryFilters.length && <Button sx={clearAllButtonStyle} onClick={clearAll} variant="text">Clear all</Button>}                                
                             </div>
                             <div className='filters-wrapper'>
-                                <FilterChips filters={summaryFilters}/>
+                            {!!summaryFilters.length && <FilterChips removeFilter={removeFilter} filters={summaryFilters} />}
 
                             </div>
                         </div>
@@ -257,7 +235,7 @@ const Catalog = () => {
                         <Divider/>
                     </div>
                     <div className='accordeons_container'>
-                        <CatalogFilters filters={filters} fillFilters={fillFilters} labelsList={summaryFiltersLabels}/>
+                        <CatalogFilters removedFilter={removedFilter} clear={clear} filters={filters} fillFilters={fillFilters} labelsList={summaryFilters}/>
                     </div>
                 </div>
             </div>
