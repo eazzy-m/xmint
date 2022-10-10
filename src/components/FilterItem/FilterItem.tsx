@@ -5,7 +5,7 @@ import { IBrands } from '../../interfaces/IBrands';
 import { IAthlete } from '../../interfaces/IAthletes';
 import { IPlaces } from '../../interfaces/IPlaces';
 import { IFilter } from '../../interfaces/IFilter';
-import {expandButtonStyle, formGroupStylesExpand, formGroupStylesShrink} from "./FilterItemStyleConstans";
+import { expandButtonStyle, formGroupStylesExpand, formGroupStylesShrink } from "./FilterItemStyleConstans";
 
 
 const FilterItem = (props: {checkboxes: IBrands[] | IPlaces[] | IAthlete[], title: string, listOfLabels: IFilter[], clear: boolean
@@ -61,12 +61,11 @@ const FilterItem = (props: {checkboxes: IBrands[] | IPlaces[] | IAthlete[], titl
     }, [removedFilter.data]);
 
     useEffect(() => {
-        if(!clear) {
+        if (!clear) {
             setFiltersData([]);
             setFilters([]);
             setFiltersLabels([]);
         }
-
     }, [clear]);
 
     useEffect(() => {

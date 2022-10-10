@@ -63,7 +63,7 @@ const SignIn:FC = () => {
                 return res.data;
             })
             .then(res => {
-                getUser(res.id, res.access)
+                getUser(res.id)
                     .then((userData) => {
                         localStorage.setItem('userData', JSON.stringify(userData.data));
                         dispatch(fillUsersData(userData.data));

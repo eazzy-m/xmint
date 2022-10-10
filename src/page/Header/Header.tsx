@@ -27,7 +27,6 @@ const Header:FC = () => {
     const openAvatar = Boolean(anchorAvatarEl);
     const auth = useSelector(isAuth);
     const user = useSelector(userdata);
-    const storageToken = useSelector(token);
     const { logo, username } = user;
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -41,7 +40,7 @@ const Header:FC = () => {
     };
 
     useEffect(() => {
-        getSportTypes(storageToken)
+        getSportTypes()
           .then(res => setSportTypes(res.data.results))
           .catch(err => console.log(err))
       }, []);

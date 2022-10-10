@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { token } from "../../redux/store"
 import { getCards } from "../../api/getCards";
 import { ICard } from "../../interfaces/ICard";
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -15,7 +13,6 @@ const SmallCardsList = () => {
     const [style, setStyle] = useState<boolean[]>([]);
     const [offset, setOffset] = useState(6);
     const [hasMore, setHasMore] = useState(true);
-    const storeToken = useSelector(token);
 
     const filler = {
         drop_banner: defaultImage,
@@ -57,13 +54,13 @@ const SmallCardsList = () => {
 
     useEffect(() => {
         backgroundPainter();
-        getCards(5, 1, storeToken)
+        getCards(5, 1)
             .then(res => setCards(res.data.results))
             .catch(() => setCards([filler]));
     }, []);
 
     const fetch = async () => {
-        const res = await getCards(4, offset, storeToken);
+        const res = await getCards(4, offset);
         return res.data.results;
     };
 

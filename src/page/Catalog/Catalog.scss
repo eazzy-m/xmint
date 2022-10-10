@@ -112,7 +112,7 @@
 .filters-summary__container {
     display: flex;
     flex-direction: column;
-    
+
 }
 
 .filters-summary__title {
@@ -125,6 +125,7 @@
 
 .filters-wrapper {
     display: flex;
+    width: 300px;
     flex-wrap: wrap;
     gap: 5px;
     margin-bottom: 20px;

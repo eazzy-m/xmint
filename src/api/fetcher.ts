@@ -37,10 +37,8 @@ class Fetcher {
         });
 
         this.instance.interceptors.request.use(config => {
-            const token ='';
             
-           
-                //       const token = getLocalAccessToken();
+            const token = localStorage.getItem('accessToken');
 
             if (!token) {
                 return config;

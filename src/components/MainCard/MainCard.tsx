@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { token } from "../../redux/store";
 import { getFirst } from "../../api/getCards";
 import { ICard } from "../../interfaces/ICard";
 import defaultImage from "../../assets/default-image/XMint1_Pack_Logo_001.png"
@@ -12,7 +10,6 @@ import "./MainCard.scss";
 const MainCard = () => {
 
     const [card, setCard] = useState<ICard>();
-    const storeToken = useSelector(token);
     const navigate = useNavigate();
 
 
@@ -30,7 +27,7 @@ const MainCard = () => {
     };
 
     useEffect(() => {
-        getFirst(storeToken)
+        getFirst()
             .then(res => setCard(res.data.results[0]))
             .catch(() => setCard(filler));
     }, []);

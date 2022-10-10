@@ -1,42 +1,33 @@
 import Fetcher from "./fetcher";
 const fetcher = new Fetcher({});
 
-const headersHandler = (token: unknown) => {
-    return {
-        Authorization: `Bearer ${token}`
-    }
-}
 
-export const getSaved = (id: unknown, token: unknown) => {
+export const getSaved = (id: unknown) => {
     return fetcher.request<any, any>({
-        url: `/users/${id}/saved/?limit=20&offset=0`,
-        headers: headersHandler(token)
+        url: `/users/${id}/saved/?limit=20&offset=0`
     });
 };
 
-export const getEditions = (id: unknown, token: unknown) => {
+export const getEditions = (id: unknown) => {
     return fetcher.request<any, any>({
-        url: `/users/${id}/editions/?limit=20&offset=0`,
-        headers: headersHandler(token)
+        url: `/users/${id}/editions/?limit=20&offset=0`
     });
 };
 
-export const getOnSale = (id: unknown, token: unknown) => {
+export const getOnSale = (id: unknown) => {
     return fetcher.request<any, any>({
-        url: `/users/${id}/editions/?limit=20&offset=0&is_on_sale=True`,
-        headers: headersHandler(token)
+        url: `/users/${id}/editions/?limit=20&offset=0&is_on_sale=True`
     });
 };
 
-export const getDrops = (id: unknown, token: unknown) => {
+export const getDrops = (id: unknown) => {
     return fetcher.request<any, any>({
-        url: `/users/${id}/drops/?limit=20&offset=0`,
-        headers: headersHandler(token)
+        url: `/users/${id}/drops/?limit=20&offset=0`
     });
 };
 
 //https://dev.xmint.co/api/v1/moments/?limit=9&offset=0&
-export const getMoments = (token: unknown, category?: string | null, limit=9, offset=0, place?: string | undefined, brand?: string | undefined, athletes?: string | undefined) => {
+export const getMoments = (category?: string | null, limit=9, offset=0, place?: string | undefined, brand?: string | undefined, athletes?: string | undefined) => {
 
     let url = category ? `moments/?limit=${limit}&offset=${offset}&category__in=${category}` : `moments/?limit=${limit}&offset=${offset}`;
 
@@ -53,15 +44,13 @@ export const getMoments = (token: unknown, category?: string | null, limit=9, of
     }
 
     return fetcher.request<any, any>({
-        url: url,
-        headers: headersHandler(token)
+        url: url
     });
 };
 
 
-export const getFilteres = (endpoint: string, token: unknown) => {
+export const getFilteres = (endpoint: string) => {
     return fetcher.request<any, any>({
-        url: `${endpoint}/`,
-        headers: headersHandler(token)
+        url: `${endpoint}/`
     });
 };

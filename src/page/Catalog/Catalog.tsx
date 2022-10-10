@@ -1,10 +1,8 @@
-import { useEffect, useState, SyntheticEvent } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState, SyntheticEvent, MouseEvent  } from 'react';
 import { useLocation } from 'react-router';
 import hide from "../../assets/hide/Hide.svg";
 import { getMoments } from '../../api/getDrops';
 import { getSportTypes } from '../../api/getSprotTypes';
-import  {token } from "../../redux/store";
 import { IGoods } from '../../interfaces/IGoods';
 import { IFilters } from '../../interfaces/IFiltersList';
 import { IFilter } from '../../interfaces/IFilter';
@@ -29,19 +27,18 @@ const Catalog = () => {
     const location = useLocation();
     const category = location.state as string;
     const [moments, setMoments] = useState<IGoods[]>([]);
-    const [sportTypes, setSportTypes] = useState([{name: 'New'}, {name: 'Surfing'}, {name: 'Skateboarding'}, {name: 'Motocross'}]);
+    const [sportTypes, setSportTypes] = useState([{name: ''}]);
     const [filters, setFilters] = useState<IFilters>({ athletes: [], brands: [], places: [] });
-    const [activeFilters, setActiveFilters] = useState({athletes: '', brands: '', places: '' });
+    const [activeFilters, setActiveFilters] = useState({ athletes: '', brands: '', places: '' });
     const [additionalFilter, setAdditionalFilter] = useState<string>('Popular');
     const [itemsCount, setItemsCount] = useState<number>(0);
     const [activeCategory, setActiveCategory] = useState(category);
     const [offset, setOffset] = useState(9);
     const [mode, setMode] = useState(false);
     const [hasMore, setHasMore] = useState(true);
-    const storageToken = useSelector(token);
     const [summaryFilters, setSummaryFilters] = useState<IFilter[]>([{label: '', data: '', categoryName: ''}]);
     const [anchorMarketplaceEl, setAncorMarketplaceEl] = useState<null | HTMLElement>(null);
-    const openMArketplace = Boolean(anchorMarketplaceEl);
+    const openMarketplace = Boolean(anchorMarketplaceEl);
     const [clear, setClear] = useState(false);
     const listOfAdditionalFilters = ['Popular', 'Newest', 'Highest price', 'Lowest price', 'Most likes'];
     const [removedFilter, setRemovedFilter] = useState<IFilter>({label: '', data: '', categoryName: ''});
@@ -49,10 +46,10 @@ const Catalog = () => {
 
     const getDefaultData = (category: string | null, places: string | undefined, brands: string | undefined, athletes: string | undefined): void => {
         setActiveCategory(category ? category : "All Moments");
-            getSportTypes(storageToken)
+            getSportTypes()
                 .then(res => setSportTypes(res.data.results))
                 .then(() => {
-                    getMoments(storageToken, activeCategory === 'All Moments' ? '' : activeCategory, 9, 0, places, brands, athletes)
+                    getMoments(activeCategory === 'All Moments' ? '' : activeCategory, 9, 0, places, brands, athletes)
                         .then(res => {
                             setItemsCount(res.data.data.count);
                             setMoments(res.data.data.results);
@@ -64,7 +61,7 @@ const Catalog = () => {
 
     useEffect(() => {
         for (let keys in filters) {
-            getFilteres(keys, storageToken)
+            getFilteres(keys)
                 .then(res => {
                     setFilters(prevState => ({
                         ...prevState,
@@ -87,12 +84,12 @@ const Catalog = () => {
         }
     }, [places, brands, athletes]);
 
-    const itemsFilter = (evt: SyntheticEvent): void => {
+    const CategoryFilter = (evt: SyntheticEvent): void => {
         //@ts-ignore
         const {name} = evt.target;
             setActiveCategory(name);
             const category = name === "All Moments" ? '' : name;
-            getMoments(storageToken, category)
+            getMoments(category)
                 .then(res => {
                     setItemsCount(res.data.data.count);
                     setMoments(res.data.data.results);
@@ -104,7 +101,7 @@ const Catalog = () => {
         setMode(!mode);
     };
 
-    const handleMarketplaceClick = (evt: React.MouseEvent<HTMLButtonElement>): void => {
+    const handleMarketplaceClick = (evt: MouseEvent<HTMLButtonElement>): void => {
         setAncorMarketplaceEl(evt.currentTarget);
     };
 
@@ -120,7 +117,7 @@ const Catalog = () => {
 
     const fetch = async (): Promise<IGoods[]> => {
         const filter = activeCategory === "All Moments" ? '' : activeCategory;
-        const res = await getMoments(storageToken, filter, 9, offset, places, brands, athletes);
+        const res = await getMoments(filter, 9, offset, places, brands, athletes);
         return res.data.data.results;
     };
 
@@ -178,16 +175,16 @@ const Catalog = () => {
                 <div style={{width: "205px", display: "flex", alignItems: "center"}}>
                     <span className='sorted-title'>Sort by: </span>
                     <Button sx={buttonStyles}
-                            aria-controls={openMArketplace ? "header__span" : undefined}
-                            aria-expanded={openMArketplace ? true : undefined}
-                            endIcon={openMArketplace ? <KeyboardArrowUp/> : <KeyboardArrowDown/>}
+                            aria-controls={openMarketplace ? "header__span" : undefined}
+                            aria-expanded={openMarketplace ? true : undefined}
+                            endIcon={openMarketplace ? <KeyboardArrowUp/> : <KeyboardArrowDown/>}
                             aria-haspopup="true"
                             id='header__button'
                             onClick={handleMarketplaceClick}
                             >{additionalFilter}</Button>
                     <Menu id='header__span'
                           anchorEl={anchorMarketplaceEl}
-                          open={openMArketplace}
+                          open={openMarketplace}
                           onClose={handleClose}
                           PaperProps={{elevation: 0, sx: marketplaceMenuStyles}}
                           transformOrigin={{ horizontal: 'right', vertical: 'top' }}
@@ -208,12 +205,12 @@ const Catalog = () => {
                 
                 <div className='filters'>
                 <button className={`filters__button ${"All Moments" === activeCategory && "filters__button_active"}`}
-                                onClick={itemsFilter}
+                                onClick={CategoryFilter}
                                 name="All Moments">
                                 All Moments
                             </button>
                     {sportTypes.map((type, index) => 
-                            <button key={index} onClick={itemsFilter} name={type.name}
+                            <button key={index} onClick={CategoryFilter} name={type.name}
                                 className={`filters__button ${type.name === activeCategory && "filters__button_active"}`}>
                                 {type.name}
                             </button>
