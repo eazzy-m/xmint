@@ -2,7 +2,7 @@ import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { Avatar, Button, TextField } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { fillUsersData } from '../../../redux/slice/user';
-import { token, userdata } from "../../../redux/store";
+import { userdata } from "../../../redux/store";
 //@ts-ignore
 import _ from 'lodash';
 import {ResetButtonStyle,
@@ -14,17 +14,15 @@ import {ResetButtonStyle,
     DisabledSubmitButtonStyle,
     AvatarStyle, } from "./stylesConstants";
 import { updateUser } from '../../../api/api';
-import "./FormStyles.scss";
 import { IUpdateUserData } from '../../../interfaces/IUpdateUserData';
 
+import "./FormStyles.scss";
 
 const TabComponentWithForm = () => {
 
     const dispatch = useDispatch();
-
     const user = useSelector(userdata);
     const {about, logo, username, name, id, email} = user;
-    const storeToken = useSelector(token);
 
     const initialData: IUpdateUserData = {
         about: about || '',
@@ -46,7 +44,7 @@ const TabComponentWithForm = () => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        updateUser(data, id, storeToken)
+        updateUser(data, id)
             .then(res => {
                 localStorage.setItem('userData', JSON.stringify(res.data))
                 return res.data;

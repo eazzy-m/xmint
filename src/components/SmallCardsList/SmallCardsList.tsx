@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { token } from "../../redux/store"
 import { getCards } from "../../api/getCards";
 import { ICard } from "../../interfaces/ICard";
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -8,13 +6,13 @@ import SmallCard from "../CardSmall/SmallCard";
 import defaultImage from "../../assets/default-image/XMint1_Pack_Logo_001.png";
  
 import "./SmallCardsList.scss";
+import Loader from '../Loader/Loader';
 
 const SmallCardsList = () => {
     const [cards, setCards] = useState<ICard[]>([] as ICard[]);
     const [style, setStyle] = useState<boolean[]>([]);
     const [offset, setOffset] = useState(6);
     const [hasMore, setHasMore] = useState(true);
-    const storeToken = useSelector(token);
 
     const filler = {
         drop_banner: defaultImage,
@@ -56,13 +54,13 @@ const SmallCardsList = () => {
 
     useEffect(() => {
         backgroundPainter();
-        getCards(5, 1, storeToken)
+        getCards(5, 1)
             .then(res => setCards(res.data.results))
             .catch(() => setCards([filler]));
     }, []);
 
     const fetch = async () => {
-        const res = await getCards(4, offset, storeToken);
+        const res = await getCards(4, offset);
         return res.data.results;
     };
 
@@ -80,7 +78,7 @@ const SmallCardsList = () => {
                 dataLength={cards.length - 3} //This is important field to render the next data
                 next={fetchData}
                 hasMore={hasMore}
-                loader={<h4 style={{margin: "10px auto"}}>Loading...</h4>}>
+                loader={<Loader/>}>
                 <div className={"cards-array"}>
                     {cards.map((card, index) => (
                         <SmallCard key={card.id}

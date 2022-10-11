@@ -3,7 +3,10 @@ import Divider from '@mui/material/Divider';
 import {companyList, helpList, marketplaceList, followUsList} from "../../constants/FooterConstants/constants";
 import AccordeonItem from '../AccordionItem/AccordionItem';
 import { IAccordion } from '../../interfaces/IAccordion';
-
+import FooterUL from '../FooterUL/FooterUL';
+import ClearIcon from '@mui/icons-material/Clear';
+import { colors } from '../../constants/inlineConstants';
+const { greyColor, whiteColor } = colors;
 
 const FooterAccordeon = () => {
 
@@ -19,23 +22,26 @@ const FooterAccordeon = () => {
     };
 
     const listOfAccordions: IAccordion[] = [
-      {title: 'marketplace', listOfLinks: marketplaceList, panel: 'panel1', listOfPanels, togglePanel},
-      {title: 'company', listOfLinks: companyList, panel: 'panel2', listOfPanels, togglePanel},
-      {title: 'help', listOfLinks: helpList, panel: 'panel3', listOfPanels, togglePanel},
-      {title: 'follow us', listOfLinks: followUsList, panel: 'panel4', listOfPanels, togglePanel}
+      {title: 'marketplace', listOfLinks: marketplaceList, panel: 'panel1', togglePanel},
+      {title: 'company', listOfLinks: companyList, panel: 'panel2', togglePanel},
+      {title: 'help', listOfLinks: helpList, panel: 'panel3', togglePanel},
+      {title: 'follow us', listOfLinks: followUsList, panel: 'panel4', togglePanel},
     ];
 
       
   return (
-
-    <div>
+    <>
       {
         listOfAccordions.map((item, index) => 
-            <AccordeonItem key={index} panel={item.panel} listOfPanels={listOfPanels} linksList={item.listOfLinks} title={item.title} togglePanel={togglePanel}/>
+            <AccordeonItem key={index} panel={item.panel} listOfPanels={listOfPanels} 
+                           title={item.title} togglePanel={togglePanel} divider={'top'} 
+                           mode='dark' collapseIcon={<ClearIcon sx={{color: greyColor}}/>}>
+              <FooterUL linksList={item.listOfLinks}/>
+            </AccordeonItem>
           )
       }
-      <Divider sx={{background: "#FFFFFF", opacity: 0.1}}/>
-    </div>
+      <Divider sx={{background: whiteColor, opacity: 0.1}}/>
+    </>
   );
 };
 

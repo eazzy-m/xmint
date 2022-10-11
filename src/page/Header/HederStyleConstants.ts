@@ -76,3 +76,15 @@ export const avatarMenuStyles = {
     width: "20px",
     height: "20px"
  };
+
+ export const filterStyle = {
+    ...fontFive,
+    ...smallText,
+    color: darkColor
+ }
+
+ export const activeFilterStyle = {
+  ...fontFive,
+  ...smallText,
+  color: buttonColor
+}

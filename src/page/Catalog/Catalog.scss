@@ -1,34 +1,132 @@
 @import "../../constants/styleConstants.scss";
 
-.catalog__description {
-    position: absolute;
+.main-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filters__header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.filters {
     display: flex;
     flex-direction: column;
+}
+
+.filters__title {
+    @include font500;
+    font-size: 34px;
+    line-height: 40px;
+    color: $dark-color;
+}
+
+.filters__items-count {
+    @include font400;
+    margin-left: 20px;
+    align-self: end;
+    font-size: 14px;
+    line-height: 18px;
+    color: $grey-color;
+    margin-bottom: 4px;
+}
+
+.sorted-title {
+    @include font500;
+    margin-left: 20px;
+    font-size: 14px;
+    line-height: 18px;
+    color: $grey-color;
+}
+
+.popular-title {
+    @include font500;
+    font-size: 14px;
+    line-height: 18px;
+    color: $dark-color;
+}
+
+.filters__hide {
+    display: flex;
+    margin-right: 32px;
+    .filters__hide-title {
+        @include font500;
+        font-size: 14px;
+        line-height: 18px;
+        margin-right: 10px;
+        color: $dark-color;
+    }
+}
+
+.cards__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    column-gap: 20px;
+    row-gap: 40px;
+}
+
+
+.buttons__container {
+    display: flex;
+    justify-content: end;
     align-items: center;
-    width: 690px;
-    z-index: 100;
-    top: 100px;
+    width: 317px;
 }
 
-.catalog__logo {
-    width: 245px;
-    height: 60px;
-    margin: 16px auto 24px
+.filters__button {
+    @include font500;
+    border: none;
+    background-color: $light-color;
+    width: 297px;
+    font-size: 16px;
+    line-height: 20px;
+    color: $dark-color;
+    text-align: left;
+    cursor: pointer;
+    margin: 6px 0;
 }
 
-.catalog__date {
-    @include font400;
+.filters__button_active {
+    color: $button-color;
+}
+
+.accordeons_container .MuiCollapse-root .MuiCollapse-wrapper .MuiCollapse-wrapperInner .MuiAccordion-region {
+    padding: 0;
+}
+
+.accordeons_container .MuiPaper-root .MuiAccordionSummary-root {
+    border-top: none;
+    padding: 0;
+}
+
+.MuiCollapse-root .MuiCollapse-wrapper .MuiCollapse-wrapperInner .MuiAccordion-region .MuiAccordionDetails-root{
+    border-top: none;
+    padding: 16px 0 20px;
+}
+
+
+.filters-summary__container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.filters-summary__title {
+    @include font500;
     font-size: 20px;
-    line-height: 30px;
-    text-align: center;
-    color: $light-color;
+    line-height: 28px;
+    color: $dark-color;
+    margin: 20px 0 16px;
 }
 
-.catalog__title {
-    width: 680px;
-    @include font400;
-    font-size: 26px;
-    line-height: 38px;
-    text-align: center;
-    color: $light-color;
+.filters-wrapper {
+    display: flex;
+    width: 300px;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 20px;
 }

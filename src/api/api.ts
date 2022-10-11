@@ -4,16 +4,9 @@ import Fetcher from "./fetcher"
 
 const fetcher = new Fetcher({});
 
-const headersHandler = (token: unknown) => {
-    return {
-        Authorization: `Bearer ${token}`
-    }
-}
-
-export const getUser = (id: unknown, token: unknown) => {
+export const getUser = (id: unknown) => {
     return fetcher.request<any, any>({
-        url: `/users/${id}/`,
-        headers: headersHandler(token)
+        url: `/users/${id}/`
     });
 };
 
@@ -26,12 +19,11 @@ export const signIn = (data: ISignIn) => {
     );
 };
 
-export const updateUser = (data: IUpdateUserData, id: string, token: unknown ) => {
+export const updateUser = (data: IUpdateUserData, id: string ) => {
     return fetcher.request<any, any>({
             url: `/users/${id}/`,
             method: 'PATCH',
-            data: {...data},
-            headers: headersHandler(token)
+            data: {...data}
         }
     );
 };

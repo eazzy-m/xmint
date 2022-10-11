@@ -1,7 +1,7 @@
 import {ReactNode, useState} from 'react';
 import { getDrops, getEditions, getSaved, getOnSale } from '../../../api/getDrops';
 import { useSelector } from 'react-redux';
-import { userdata, token } from '../../../redux/store';
+import { userdata } from '../../../redux/store';
 import { IItems } from '../../../interfaces/IItems';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -64,25 +64,23 @@ export default function BasicTabs() {
   const user = useSelector(userdata);
   const userId = user.id;
 
-  const storeToken = useSelector(token);
-
   const fetchDrops = () => {
-    getDrops(userId, storeToken)
+    getDrops(userId)
       .then(res => setDrops(res.data))
       .catch(err => console.log(err))
   };
   const fetchEditions = () => {
-    getEditions(userId, storeToken)
+    getEditions(userId)
       .then(res => setEditions(res.data))
       .catch(err => console.log(err))
   };
   const fetchSaved = () => {
-    getSaved(userId, storeToken)
+    getSaved(userId)
       .then(res => setSaved(res.data))
       .catch(err => console.log(err))
   };
   const fetchOnSale = () => {
-    getOnSale(userId, storeToken)
+    getOnSale(userId)
       .then(res => setOnSale(res.data))
       .catch(err => console.log(err))
   };

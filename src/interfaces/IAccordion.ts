@@ -5,5 +5,4 @@ export interface IAccordion {
     listOfLinks: Ilinks[];
     title: string;
     togglePanel: (isExpanded: boolean, panel: string) => void;
-    listOfPanels: string[];
 }

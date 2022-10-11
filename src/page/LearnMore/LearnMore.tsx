@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { getCardById } from '../../api/getCards';
 import { ICard } from '../../interfaces/ICard';
 import { useLocation } from 'react-router';
-import { useSelector } from 'react-redux';
-import { token } from "../../redux/store"
 import Countdown from '../../components/countdown/countdown';
 import MembershipWindow from '../../components/MembershipWindow/MembershipWindow';
 import Banner from '../../components/Banner/Banner';
@@ -18,11 +16,11 @@ const LearnMore = () => {
   const [card, setCard] = useState<ICard>();
   const [error, setError] = useState();
   const location = useLocation();
-  const id = location.state;
-  const storeToken = useSelector(token);
+  const id = location.state
+
   
   useEffect(() => {
-    getCardById(id, storeToken)
+    getCardById(id)
       .then(res => setCard(res.data))
       .catch(err => setError(err));
   }, [id]); 

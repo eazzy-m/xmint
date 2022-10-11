@@ -1,0 +1,25 @@
+
+@import "../../constants/styleConstants.scss";
+
+
+.no-matches__container {
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 52px auto 0;
+
+    .no-matches__title {
+        @include font500;
+        font-size: 24px;
+        line-height: 30px;
+        color: $dark-color;
+        margin-bottom: 8px;
+    }
+    .no-matches__subtitle {
+        @include font400;
+        font-size: 20px;
+        line-height: 30px;
+        color: $dark-color;
+    }
+}

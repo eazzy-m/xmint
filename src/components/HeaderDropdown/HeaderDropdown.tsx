@@ -10,7 +10,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import Divider from '@mui/material/Divider';
 import {avatarStyles, buttonStyles, buttonStylesColored} from "../../page/Header/HederStyleConstants";
 import { useDispatch, useSelector } from 'react-redux';
-import { userdata, token } from '../../redux/store';
+import { userdata } from '../../redux/store';
 import { Avatar, IconButton } from "@mui/material";
 import { useNavigate } from 'react-router';
 import { signOutReducer } from '../../redux/slice/auth';
@@ -45,10 +45,9 @@ const HeaderDropdown = () => {
   const {logo, username} = user;
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const storageToken = useSelector(token);
 
   useEffect(() => {
-    getSportTypes(storageToken)
+    getSportTypes()
       .then(res => setSportTypes(res.data.results))
       .catch(err => console.log(err))
   }, []);
@@ -95,9 +94,18 @@ const HeaderDropdown = () => {
           <Typography>Marketplace</Typography>
         </AccordionSummary>
         <AccordionDetails>
+        <span onClick={() => {
+                  dispatch(closeModal())
+                  navigate("/catalog", {state: ''})
+                }}
+             className='header__span-dropdown'>All NFTs</span>
           {
             sportTypes.map((sportType, index) => 
-            <span key={index} className='header__span-dropdown'>{sportType.name}</span>
+            <span onClick={() => {
+                  dispatch(closeModal())
+                  navigate("/catalog", {state: sportType.name})
+                }}
+             key={index} className='header__span-dropdown'>{sportType.name}</span>
               )
           }
         </AccordionDetails>
